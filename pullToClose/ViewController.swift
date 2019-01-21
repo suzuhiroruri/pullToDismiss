@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import PullToDismiss
 
 class ViewController: UIViewController {
 

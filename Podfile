@@ -5,9 +5,7 @@ inhibit_all_warnings!
 def install_pods
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
-
-  # Pods for 
-  pod 'PullToDismiss', '~> 2.1'
+  pod 'SVProgressHUD', '~> 2.2.5'
 end
 
 target 'pullToClose' do

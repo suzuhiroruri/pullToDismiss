@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import PullToDismiss
 
 class ModalViewController: UIViewController {
     @IBOutlet var customNavigationView: UIView!

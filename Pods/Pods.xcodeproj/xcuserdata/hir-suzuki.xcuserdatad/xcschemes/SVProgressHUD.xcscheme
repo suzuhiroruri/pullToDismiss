@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "36793FA474329A99E66DA50CFA085FE9"
-               BlueprintName = "PullToDismiss"
+               BlueprintIdentifier = "060BB980C458229C82B2BEB474026B72"
+               BlueprintName = "SVProgressHUD"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "PullToDismiss.framework">
+               BuildableName = "SVProgressHUD.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

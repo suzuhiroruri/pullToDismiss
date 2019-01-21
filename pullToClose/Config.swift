@@ -7,17 +7,16 @@
 //
 
 import Foundation
-import PullToDismiss
 
 class Config {
     static let shared: Config = Config()
     
     var backgroundEffect: BackgroundEffect? = ShadowEffect.default
-    var dismissableHeightPercentage: CGFloat = PullToDismiss.Defaults.dismissableHeightPercentage
+    // var dismissableHeightPercentage: CGFloat? = PullToDismiss.Defaults.dismissableHeightPercentage
     
     func adaptSetting(pullToDismiss: PullToDismiss?) {
         pullToDismiss?.dismissableHeightPercentage = 50.0
-        pullToDismiss?.backgroundEffect = ShadowEffect(color: UIColor.clear, alpha: 0.0)
+        pullToDismiss?.backgroundEffect = ShadowEffect(color: .clear, alpha: 0.0)
         pullToDismiss?.edgeShadow = nil
     }
 }

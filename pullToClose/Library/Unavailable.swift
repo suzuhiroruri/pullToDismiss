@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension PullToDismiss {
     @available(*, unavailable, renamed: "delegate")

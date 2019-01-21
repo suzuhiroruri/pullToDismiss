@@ -1,16 +1,16 @@
 PODS:
-  - PullToDismiss (2.1)
+  - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
-  - PullToDismiss (~> 2.1)
+  - SVProgressHUD (~> 2.2.5)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - PullToDismiss
+    - SVProgressHUD
 
 SPEC CHECKSUMS:
-  PullToDismiss: 5513d561c382d201d0e3fbbdab9a47196cf5d2e2
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: 5bc2bf929a3a21984a2525a5f6badd4e87bfc765
+PODFILE CHECKSUM: 2649e2f8cf627fcd517b0d8d7afa8869409a04f5
 
 COCOAPODS: 1.6.0.beta.2

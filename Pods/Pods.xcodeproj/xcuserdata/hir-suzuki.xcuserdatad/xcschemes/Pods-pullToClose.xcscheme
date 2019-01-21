@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6BE082CB4DF1E79A8697743E5B140D07"
+               BlueprintIdentifier = "80B126C685141CE58274FC50C2ECC3BF"
                BuildableName = "Pods_pullToClose.framework"
                BlueprintName = "Pods-pullToClose"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6BE082CB4DF1E79A8697743E5B140D07"
+            BlueprintIdentifier = "80B126C685141CE58274FC50C2ECC3BF"
             BuildableName = "Pods_pullToClose.framework"
             BlueprintName = "Pods-pullToClose"
             ReferencedContainer = "container:Pods.xcodeproj">

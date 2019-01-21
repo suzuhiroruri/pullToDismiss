@@ -15,7 +15,7 @@ open class PullToDismiss: NSObject {
         private init() {}
         public static let dismissableHeightPercentage: CGFloat = 0.33
     }
-    open var isTop = false
+
     open var backgroundEffect: BackgroundEffect? = ShadowEffect.default
     open var edgeShadow: EdgeShadow? = EdgeShadow.default
 
@@ -141,12 +141,10 @@ open class PullToDismiss: NSObject {
         backgroundEffect.applyEffect(view: backgroundView, rate: 1.0)
     }
 
-    @objc func handlePanGesture(_ gesture: UIPanGestureRecognizer) {
-        /*
+    @objc private func handlePanGesture(_ gesture: UIPanGestureRecognizer) {
         switch gesture.state {
         case .began:
             startDragging()
-            
         case .changed:
             let diff = gesture.translation(in: gesture.view).y
             updateViewPosition(offset: diff)
@@ -156,11 +154,9 @@ open class PullToDismiss: NSObject {
         default:
             break
         }
-        */
     }
 
     fileprivate func startDragging() {
-        /*
         targetViewController?.view.layer.removeAllAnimations()
         backgroundView?.layer.removeAllAnimations()
         viewPositionY = 0.0
@@ -169,7 +165,6 @@ open class PullToDismiss: NSObject {
         if haveShadowEffect {
             targetViewController?.view.clipsToBounds = false
         }
-        */
     }
 
     fileprivate func updateViewPosition(offset: CGFloat) {
@@ -240,7 +235,6 @@ extension PullToDismiss: UICollectionViewDelegateFlowLayout {
 
 extension PullToDismiss: UIScrollViewDelegate {
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        /*
         if dragging {
             let diff = -(scrollView.contentOffset.y - previousContentOffsetY)
             if scrollView.contentOffset.y < -scrollView.contentInset.top || (targetViewController?.view.frame.origin.y ?? 0.0) > 0.0 {
@@ -249,14 +243,12 @@ extension PullToDismiss: UIScrollViewDelegate {
             }
             previousContentOffsetY = scrollView.contentOffset.y
         }
-        */
     }
 
     public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         startDragging()
         dragging = true
         previousContentOffsetY = scrollView.contentOffset.y
-        
     }
 
     public func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {

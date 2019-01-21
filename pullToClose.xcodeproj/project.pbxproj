@@ -16,7 +16,15 @@
 		2990CC5121F55C820037A7B1 /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2990CC5021F55C820037A7B1 /* ModalViewController.swift */; };
 		2990CC5321F55CB20037A7B1 /* Modal.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2990CC5221F55CB20037A7B1 /* Modal.storyboard */; };
 		2990CC5521F568B70037A7B1 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2990CC5421F568B70037A7B1 /* Config.swift */; };
-		FFFA428185110EDC252B8404 /* Pods_pullToClose.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AC257FF4EB050B804F83A92 /* Pods_pullToClose.framework */; };
+		2990CCB921F5D7C70037A7B1 /* DelegateProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2990CCB021F5D7C60037A7B1 /* DelegateProxy.m */; };
+		2990CCBA21F5D7C70037A7B1 /* ScrollViewDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2990CCB121F5D7C70037A7B1 /* ScrollViewDelegateProxy.swift */; };
+		2990CCBB21F5D7C70037A7B1 /* PullToDismiss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2990CCB221F5D7C70037A7B1 /* PullToDismiss.swift */; };
+		2990CCBC21F5D7C70037A7B1 /* BackgroundEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2990CCB421F5D7C70037A7B1 /* BackgroundEffect.swift */; };
+		2990CCBD21F5D7C70037A7B1 /* Unavailable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2990CCB521F5D7C70037A7B1 /* Unavailable.swift */; };
+		2990CCBE21F5D7C70037A7B1 /* EdgeShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2990CCB621F5D7C70037A7B1 /* EdgeShadow.swift */; };
+		2990CCBF21F5D7C70037A7B1 /* CustomBlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2990CCB721F5D7C70037A7B1 /* CustomBlurView.swift */; };
+		2990CCC021F5D7C70037A7B1 /* UIView+EdgeShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2990CCB821F5D7C70037A7B1 /* UIView+EdgeShadow.swift */; };
+		D1D85803277EC78516DAFB4F /* Pods_pullToClose.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A39BF44F9E35EEF3D92B7F4A /* Pods_pullToClose.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,8 +38,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		00EADA23E30D2B1590CA6E83 /* Pods-pullToClose.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pullToClose.debug.xcconfig"; path = "Target Support Files/Pods-pullToClose/Pods-pullToClose.debug.xcconfig"; sourceTree = "<group>"; };
-		23C2E647A14D41B63A4C699F /* Pods-pullToClose.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pullToClose.release.xcconfig"; path = "Target Support Files/Pods-pullToClose/Pods-pullToClose.release.xcconfig"; sourceTree = "<group>"; };
 		2990CC2B21F55A1A0037A7B1 /* pullToClose.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pullToClose.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2990CC2E21F55A1A0037A7B1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2990CC3021F55A1A0037A7B1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -45,7 +51,19 @@
 		2990CC5021F55C820037A7B1 /* ModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
 		2990CC5221F55CB20037A7B1 /* Modal.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Modal.storyboard; sourceTree = "<group>"; };
 		2990CC5421F568B70037A7B1 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
-		8AC257FF4EB050B804F83A92 /* Pods_pullToClose.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_pullToClose.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2990CCAF21F5D7670037A7B1 /* pullToClose-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "pullToClose-Bridging-Header.h"; sourceTree = "<group>"; };
+		2990CCB021F5D7C60037A7B1 /* DelegateProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelegateProxy.m; sourceTree = "<group>"; };
+		2990CCB121F5D7C70037A7B1 /* ScrollViewDelegateProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollViewDelegateProxy.swift; sourceTree = "<group>"; };
+		2990CCB221F5D7C70037A7B1 /* PullToDismiss.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullToDismiss.swift; sourceTree = "<group>"; };
+		2990CCB321F5D7C70037A7B1 /* DelegateProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelegateProxy.h; sourceTree = "<group>"; };
+		2990CCB421F5D7C70037A7B1 /* BackgroundEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundEffect.swift; sourceTree = "<group>"; };
+		2990CCB521F5D7C70037A7B1 /* Unavailable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Unavailable.swift; sourceTree = "<group>"; };
+		2990CCB621F5D7C70037A7B1 /* EdgeShadow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EdgeShadow.swift; sourceTree = "<group>"; };
+		2990CCB721F5D7C70037A7B1 /* CustomBlurView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomBlurView.swift; sourceTree = "<group>"; };
+		2990CCB821F5D7C70037A7B1 /* UIView+EdgeShadow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+EdgeShadow.swift"; sourceTree = "<group>"; };
+		4A024EC9C589E358F7C21D13 /* Pods-pullToClose.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pullToClose.release.xcconfig"; path = "Target Support Files/Pods-pullToClose/Pods-pullToClose.release.xcconfig"; sourceTree = "<group>"; };
+		8D25414A046D57AD8B99A1C3 /* Pods-pullToClose.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pullToClose.debug.xcconfig"; path = "Target Support Files/Pods-pullToClose/Pods-pullToClose.debug.xcconfig"; sourceTree = "<group>"; };
+		A39BF44F9E35EEF3D92B7F4A /* Pods_pullToClose.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_pullToClose.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,7 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FFFA428185110EDC252B8404 /* Pods_pullToClose.framework in Frameworks */,
+				D1D85803277EC78516DAFB4F /* Pods_pullToClose.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,6 +108,7 @@
 		2990CC2D21F55A1A0037A7B1 /* pullToClose */ = {
 			isa = PBXGroup;
 			children = (
+				2990CC8A21F5D17E0037A7B1 /* Library */,
 				2990CC2E21F55A1A0037A7B1 /* AppDelegate.swift */,
 				2990CC3021F55A1A0037A7B1 /* ViewController.swift */,
 				2990CC3221F55A1A0037A7B1 /* Main.storyboard */,
@@ -99,6 +118,7 @@
 				2990CC3521F55A1E0037A7B1 /* Assets.xcassets */,
 				2990CC3721F55A1E0037A7B1 /* LaunchScreen.storyboard */,
 				2990CC3A21F55A1E0037A7B1 /* Info.plist */,
+				2990CCAF21F5D7670037A7B1 /* pullToClose-Bridging-Header.h */,
 			);
 			path = pullToClose;
 			sourceTree = "<group>";
@@ -112,10 +132,26 @@
 			path = pullToCloseUITests;
 			sourceTree = "<group>";
 		};
+		2990CC8A21F5D17E0037A7B1 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				2990CCB421F5D7C70037A7B1 /* BackgroundEffect.swift */,
+				2990CCB721F5D7C70037A7B1 /* CustomBlurView.swift */,
+				2990CCB321F5D7C70037A7B1 /* DelegateProxy.h */,
+				2990CCB021F5D7C60037A7B1 /* DelegateProxy.m */,
+				2990CCB621F5D7C70037A7B1 /* EdgeShadow.swift */,
+				2990CCB221F5D7C70037A7B1 /* PullToDismiss.swift */,
+				2990CCB121F5D7C70037A7B1 /* ScrollViewDelegateProxy.swift */,
+				2990CCB821F5D7C70037A7B1 /* UIView+EdgeShadow.swift */,
+				2990CCB521F5D7C70037A7B1 /* Unavailable.swift */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
 		32AE47C7130F9A1FCC4E762B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8AC257FF4EB050B804F83A92 /* Pods_pullToClose.framework */,
+				A39BF44F9E35EEF3D92B7F4A /* Pods_pullToClose.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -123,8 +159,8 @@
 		4862F0460E28096A386EA674 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				00EADA23E30D2B1590CA6E83 /* Pods-pullToClose.debug.xcconfig */,
-				23C2E647A14D41B63A4C699F /* Pods-pullToClose.release.xcconfig */,
+				8D25414A046D57AD8B99A1C3 /* Pods-pullToClose.debug.xcconfig */,
+				4A024EC9C589E358F7C21D13 /* Pods-pullToClose.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -140,7 +176,7 @@
 				2990CC2721F55A1A0037A7B1 /* Sources */,
 				2990CC2821F55A1A0037A7B1 /* Frameworks */,
 				2990CC2921F55A1A0037A7B1 /* Resources */,
-				832C3EC8F64774ECAAA30C13 /* [CP] Embed Pods Frameworks */,
+				38F8A76077D102F9FFF26037 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -181,6 +217,7 @@
 				TargetAttributes = {
 					2990CC2A21F55A1A0037A7B1 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 					};
 					2990CC3E21F55A1F0037A7B1 = {
 						CreatedOnToolsVersion = 10.1;
@@ -229,7 +266,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		832C3EC8F64774ECAAA30C13 /* [CP] Embed Pods Frameworks */ = {
+		38F8A76077D102F9FFF26037 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -238,13 +275,13 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-pullToClose/Pods-pullToClose-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/PullToDismiss/PullToDismiss.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PullToDismiss.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -280,10 +317,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2990CCBE21F5D7C70037A7B1 /* EdgeShadow.swift in Sources */,
 				2990CC3121F55A1A0037A7B1 /* ViewController.swift in Sources */,
 				2990CC5521F568B70037A7B1 /* Config.swift in Sources */,
 				2990CC2F21F55A1A0037A7B1 /* AppDelegate.swift in Sources */,
+				2990CCBF21F5D7C70037A7B1 /* CustomBlurView.swift in Sources */,
 				2990CC5121F55C820037A7B1 /* ModalViewController.swift in Sources */,
+				2990CCB921F5D7C70037A7B1 /* DelegateProxy.m in Sources */,
+				2990CCBB21F5D7C70037A7B1 /* PullToDismiss.swift in Sources */,
+				2990CCBC21F5D7C70037A7B1 /* BackgroundEffect.swift in Sources */,
+				2990CCC021F5D7C70037A7B1 /* UIView+EdgeShadow.swift in Sources */,
+				2990CCBD21F5D7C70037A7B1 /* Unavailable.swift in Sources */,
+				2990CCBA21F5D7C70037A7B1 /* ScrollViewDelegateProxy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,9 +488,10 @@
 		};
 		2990CC4921F55A1F0037A7B1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 00EADA23E30D2B1590CA6E83 /* Pods-pullToClose.debug.xcconfig */;
+			baseConfigurationReference = 8D25414A046D57AD8B99A1C3 /* Pods-pullToClose.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9JMCJCA8J2;
 				INFOPLIST_FILE = pullToClose/Info.plist;
@@ -456,6 +502,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = nest.pullToClose;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "pullToClose/pullToClose-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -463,9 +511,10 @@
 		};
 		2990CC4A21F55A1F0037A7B1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 23C2E647A14D41B63A4C699F /* Pods-pullToClose.release.xcconfig */;
+			baseConfigurationReference = 4A024EC9C589E358F7C21D13 /* Pods-pullToClose.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9JMCJCA8J2;
 				INFOPLIST_FILE = pullToClose/Info.plist;
@@ -476,6 +525,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = nest.pullToClose;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "pullToClose/pullToClose-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

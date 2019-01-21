@@ -1,11 +1,11 @@
 # Acknowledgements
 This application makes use of the following third party libraries:
 
-## PullToDismiss
+## SVProgressHUD
 
 MIT License
 
-Copyright (c) 2016 Suguru Kishimoto
+Copyright (c) 2011-2018 Sam Vermette, Tobias Tiemerding and contributors.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
