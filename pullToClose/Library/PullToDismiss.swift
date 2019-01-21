@@ -17,7 +17,6 @@ open class PullToDismiss: NSObject {
     }
 
     open var backgroundEffect: BackgroundEffect? = ShadowEffect.default
-    open var edgeShadow: EdgeShadow? = EdgeShadow.default
 
     public var dismissAction: (() -> Void)?
     public weak var delegate: UIScrollViewDelegate? {
@@ -90,7 +89,7 @@ open class PullToDismiss: NSObject {
     }
 
     private var haveShadowEffect: Bool {
-        return backgroundEffect != nil || edgeShadow != nil
+        return backgroundEffect != nil
     }
 
     fileprivate func dismiss() {
@@ -161,7 +160,6 @@ open class PullToDismiss: NSObject {
         backgroundView?.layer.removeAllAnimations()
         viewPositionY = 0.0
         makeBackgroundView()
-        targetViewController?.view.applyEdgeShadow(edgeShadow)
         if haveShadowEffect {
             targetViewController?.view.clipsToBounds = false
         }
@@ -184,7 +182,6 @@ open class PullToDismiss: NSObject {
         let rate: CGFloat = (1.0 - (targetViewOriginY / (targetViewHeight * dismissableHeightPercentage)))
 
         updateBackgroundView(rate: rate)
-        targetViewController?.view.updateEdgeShadow(edgeShadow, rate: rate)
     }
 
     fileprivate func finishDragging(withVelocity velocity: CGPoint) {
@@ -192,18 +189,15 @@ open class PullToDismiss: NSObject {
         let dismissableHeight = (targetViewController?.view.frame.height ?? 0.0) * dismissableHeightPercentage
         if originY > dismissableHeight || originY > 0 && velocity.y < 0 {
             deleteBackgroundView()
-            targetViewController?.view.detachEdgeShadow()
             proxy = nil
             _ = dismissAction?() ?? dismiss()
         } else if originY != 0.0 {
             UIView.perform(.delete, on: [], options: [.allowUserInteraction], animations: { [weak self] in
                 self?.targetViewController?.view.frame.origin.y = 0.0
                 self?.resetBackgroundView()
-                self?.targetViewController?.view.updateEdgeShadow(self?.edgeShadow, rate: 1.0)
             }) { [weak self] finished in
                 if finished {
                     self?.deleteBackgroundView()
-                    self?.targetViewController?.view.detachEdgeShadow()
                 }
             }
         } else {

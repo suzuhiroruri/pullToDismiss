@@ -17,6 +17,5 @@ class Config {
     func adaptSetting(pullToDismiss: PullToDismiss?) {
         pullToDismiss?.dismissableHeightPercentage = 50.0
         pullToDismiss?.backgroundEffect = ShadowEffect(color: .clear, alpha: 0.0)
-        pullToDismiss?.edgeShadow = nil
     }
 }
