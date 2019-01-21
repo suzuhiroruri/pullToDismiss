@@ -65,6 +65,7 @@ open class PullToDismiss: NSObject {
         self.__scrollView = scrollView
         self.__scrollView?.delegate = self.proxy
         self.viewController = viewController
+        self.__scrollView?.bounces = true
         
         if let navigationBar = navigationBar ?? viewController.navigationController?.navigationBar {
             let gesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
@@ -73,6 +74,8 @@ open class PullToDismiss: NSObject {
             self.panGesture = gesture
         }
     }
+    
+    var isTop = true
 
     deinit {
         if let panGesture = panGesture {
@@ -156,6 +159,14 @@ open class PullToDismiss: NSObject {
     }
 
     fileprivate func startDragging() {
+        if let scrollView = __scrollView {
+            if scrollView.contentOffset.y <= CGFloat(0) {
+                isTop = true
+            } else {
+                isTop = false
+            }
+        }
+        
         targetViewController?.view.layer.removeAllAnimations()
         backgroundView?.layer.removeAllAnimations()
         viewPositionY = 0.0
@@ -166,6 +177,11 @@ open class PullToDismiss: NSObject {
     }
 
     fileprivate func updateViewPosition(offset: CGFloat) {
+        
+        if !isTop {
+            return
+        }
+        
         var addOffset: CGFloat = offset
         // avoid statusbar gone
         if viewPositionY >= 0 && viewPositionY < 0.05 {
@@ -217,7 +233,7 @@ open class PullToDismiss: NSObject {
         return nil
     }
 }
-
+/*
 extension PullToDismiss: UITableViewDelegate {
 }
 
@@ -226,10 +242,10 @@ extension PullToDismiss: UICollectionViewDelegate {
 
 extension PullToDismiss: UICollectionViewDelegateFlowLayout {
 }
-
+*/
 extension PullToDismiss: UIScrollViewDelegate {
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if dragging {
+        if dragging && isTop {
             let diff = -(scrollView.contentOffset.y - previousContentOffsetY)
             if scrollView.contentOffset.y < -scrollView.contentInset.top || (targetViewController?.view.frame.origin.y ?? 0.0) > 0.0 {
                 updateViewPosition(offset: diff)

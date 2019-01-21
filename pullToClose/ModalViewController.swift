@@ -7,6 +7,10 @@
 //
 
 import UIKit
+protocol ModalViewControllerProtocol:class {
+    func dismiss()
+}
+
 
 class ModalViewController: UIViewController {
     @IBOutlet var customNavigationView: UIView!
@@ -21,7 +25,10 @@ class ModalViewController: UIViewController {
     
     var isTop = true
     
+    weak var delegate:ModalViewControllerProtocol?
+    
     var viewHeight:CGFloat = 0.0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -52,13 +59,17 @@ class ModalViewController: UIViewController {
         backgroundView.alpha = 0.9
     }
     
+    
+    
     @IBAction func tapCloseButton(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
     
     @objc func dismiss(_: AnyObject?) {
+        self.delegate?.dismiss()
         dismiss(animated: true) { [weak self] in
             self?.disissBlock?()
+            
         }
     }
 }

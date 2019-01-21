@@ -102,7 +102,6 @@
 		2990CC2D21F55A1A0037A7B1 /* pullToClose */ = {
 			isa = PBXGroup;
 			children = (
-				2990CC8A21F5D17E0037A7B1 /* Library */,
 				2990CC2E21F55A1A0037A7B1 /* AppDelegate.swift */,
 				2990CC3021F55A1A0037A7B1 /* ViewController.swift */,
 				2990CC3221F55A1A0037A7B1 /* Main.storyboard */,
@@ -113,6 +112,7 @@
 				2990CC3721F55A1E0037A7B1 /* LaunchScreen.storyboard */,
 				2990CC3A21F55A1E0037A7B1 /* Info.plist */,
 				2990CCAF21F5D7670037A7B1 /* pullToClose-Bridging-Header.h */,
+				2990CC8A21F5D17E0037A7B1 /* Library */,
 			);
 			path = pullToClose;
 			sourceTree = "<group>";
