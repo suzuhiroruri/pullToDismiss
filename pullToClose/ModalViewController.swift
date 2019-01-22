@@ -17,7 +17,10 @@ class ModalViewController: UIViewController {
     var disissBlock: (() -> Void)?
     @IBOutlet var tableView: UITableView!
     @IBOutlet var customNavigationView: NavView!
-    
+    @IBOutlet var backgroundView: UIView!
+
+    var isTop = true
+
     
     weak var delegate:ModalViewControllerProtocol?
     
@@ -40,6 +43,8 @@ class ModalViewController: UIViewController {
         let statusBarHeight = UIApplication.shared.statusBarFrame.size.height
         let myBoundHeight: CGFloat = UIScreen.main.bounds.size.height
         viewHeight = myBoundHeight - statusBarHeight
+        
+        backgroundView.alpha = 0.9
     }
     
     
@@ -71,4 +76,33 @@ extension ModalViewController:UITableViewDelegate, UITableViewDataSource {
         cell.textLabel?.text = indexPath.row.description
         return cell
     }
+}
+
+
+extension ModalViewController:UIScrollViewDelegate {
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        if tableView.contentOffset.y == 0.0 {
+            isTop = true
+        } else {
+            isTop = false
+        }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard isTop == true else {
+            return
+        }
+        guard let globalPoint = customNavigationView.superview?.convert(customNavigationView.frame.origin, to: nil).y else {
+            return
+        }
+        let scrollRate = globalPoint / viewHeight
+        let alpha = 0.9 - scrollRate*2
+        backgroundView.alpha = alpha
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        backgroundView.alpha = 0.9
+    }
+    
 }
