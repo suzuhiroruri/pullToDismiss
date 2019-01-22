@@ -19,7 +19,6 @@
 		2990CCB921F5D7C70037A7B1 /* DelegateProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2990CCB021F5D7C60037A7B1 /* DelegateProxy.m */; };
 		2990CCBA21F5D7C70037A7B1 /* ScrollViewDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2990CCB121F5D7C70037A7B1 /* ScrollViewDelegateProxy.swift */; };
 		2990CCBB21F5D7C70037A7B1 /* PullToDismiss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2990CCB221F5D7C70037A7B1 /* PullToDismiss.swift */; };
-		2990CCBC21F5D7C70037A7B1 /* BackgroundEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2990CCB421F5D7C70037A7B1 /* BackgroundEffect.swift */; };
 		2990CCBD21F5D7C70037A7B1 /* Unavailable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2990CCB521F5D7C70037A7B1 /* Unavailable.swift */; };
 		29AA49FC21F6B507007AA995 /* NavView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AA49FB21F6B507007AA995 /* NavView.swift */; };
 		29AA49FE21F6B521007AA995 /* NavView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29AA49FD21F6B521007AA995 /* NavView.xib */; };
@@ -54,7 +53,6 @@
 		2990CCB121F5D7C70037A7B1 /* ScrollViewDelegateProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollViewDelegateProxy.swift; sourceTree = "<group>"; };
 		2990CCB221F5D7C70037A7B1 /* PullToDismiss.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullToDismiss.swift; sourceTree = "<group>"; };
 		2990CCB321F5D7C70037A7B1 /* DelegateProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelegateProxy.h; sourceTree = "<group>"; };
-		2990CCB421F5D7C70037A7B1 /* BackgroundEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundEffect.swift; sourceTree = "<group>"; };
 		2990CCB521F5D7C70037A7B1 /* Unavailable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Unavailable.swift; sourceTree = "<group>"; };
 		29AA49FB21F6B507007AA995 /* NavView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavView.swift; sourceTree = "<group>"; };
 		29AA49FD21F6B521007AA995 /* NavView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NavView.xib; sourceTree = "<group>"; };
@@ -128,7 +126,6 @@
 		2990CC8A21F5D17E0037A7B1 /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				2990CCB421F5D7C70037A7B1 /* BackgroundEffect.swift */,
 				2990CCB321F5D7C70037A7B1 /* DelegateProxy.h */,
 				2990CCB021F5D7C60037A7B1 /* DelegateProxy.m */,
 				2990CCB221F5D7C70037A7B1 /* PullToDismiss.swift */,
@@ -248,7 +245,6 @@
 				2990CC5121F55C820037A7B1 /* ModalViewController.swift in Sources */,
 				2990CCB921F5D7C70037A7B1 /* DelegateProxy.m in Sources */,
 				2990CCBB21F5D7C70037A7B1 /* PullToDismiss.swift in Sources */,
-				2990CCBC21F5D7C70037A7B1 /* BackgroundEffect.swift in Sources */,
 				2990CCBD21F5D7C70037A7B1 /* Unavailable.swift in Sources */,
 				29AA49FC21F6B507007AA995 /* NavView.swift in Sources */,
 				2990CCBA21F5D7C70037A7B1 /* ScrollViewDelegateProxy.swift in Sources */,

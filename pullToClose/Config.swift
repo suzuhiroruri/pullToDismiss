@@ -11,11 +11,9 @@ import Foundation
 class Config {
     static let shared: Config = Config()
     
-    var backgroundEffect: BackgroundEffect? = ShadowEffect.default
     var dismissableHeightPercentage = PullToDismiss.Defaults.dismissableHeightPercentage
     
     func adaptSetting(pullToDismiss: PullToDismiss?) {
         pullToDismiss?.dismissableHeightPercentage = 50.0
-        pullToDismiss?.backgroundEffect = ShadowEffect(color: .black, alpha: 0.7)
     }
 }
