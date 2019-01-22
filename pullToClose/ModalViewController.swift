@@ -14,7 +14,7 @@ protocol ModalViewControllerProtocol:class {
 
 class ModalViewController: UIViewController {
     private var pullToDismiss: PullToDismiss?
-    var disissBlock: (() -> Void)?
+    var dimissBlock: (() -> Void)?
     @IBOutlet var tableView: UITableView!
     @IBOutlet var customNavigationView: NavView!
     @IBOutlet var backgroundView: UIView!
@@ -43,16 +43,19 @@ class ModalViewController: UIViewController {
         let myBoundHeight: CGFloat = UIScreen.main.bounds.size.height
         viewHeight = myBoundHeight - statusBarHeight
         backgroundViewHeight.constant = myBoundHeight*2
-        backgroundView.alpha = 0.9
+        backgroundView.alpha = 0.7
         
         customNavigationView?.navViewDelegate = self
     }
     
     @objc func dismiss(_: AnyObject?) {
-        self.delegate?.dismiss()
+        UIView.animate(withDuration: 0.2, animations: { [weak self] in
+            self?.backgroundView.alpha = 0.0
+        })
         dismiss(animated: true) { [weak self] in
-            self?.disissBlock?()
+            self?.dimissBlock?()
         }
+        self.delegate?.dismiss()
     }
 }
 
@@ -75,6 +78,9 @@ extension ModalViewController:UITableViewDelegate, UITableViewDataSource {
 
 extension ModalViewController:UIScrollViewDelegate {
     
+    /// スクロールを開始
+    ///
+    /// - Parameter scrollView: scrollView
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         if tableView.contentOffset.y == 0.0 {
             isTop = true
@@ -83,6 +89,9 @@ extension ModalViewController:UIScrollViewDelegate {
         }
     }
     
+    /// スクロール中
+    ///
+    /// - Parameter scrollView: scrollView
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         guard isTop == true else {
             return
@@ -91,22 +100,23 @@ extension ModalViewController:UIScrollViewDelegate {
             return
         }
         let scrollRate = globalPoint / viewHeight
-        let alpha = 0.9 - scrollRate*2
+        let alpha = 0.7 - scrollRate*2
         backgroundView.alpha = alpha
     }
     
+    /// スクロール終了(指が離れた瞬間)
+    ///
+    /// - Parameters:
+    ///   - scrollView: scrollView
+    ///   - decelerate: 慣性が効いているかどうか
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        backgroundView.alpha = 0.9
+        backgroundView.alpha = 0.7
     }
-    
 }
 
 extension ModalViewController:NavViewDelegate {
+    /// 閉じるボタンをタップ
     func tapCloseButton() {
-        UIView.animate(withDuration: 0.2, animations: { [weak self] in
-            self?.backgroundView.alpha = 0.0
-        })
-        self.delegate?.dismiss()
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(self)
     }
 }

@@ -89,8 +89,6 @@ open class PullToDismiss: NSObject {
         return viewController?.navigationController ?? viewController
     }
 
-    
-
     fileprivate func dismiss() {
         targetViewController?.dismiss(animated: true, completion: nil)
     }
@@ -125,7 +123,6 @@ open class PullToDismiss: NSObject {
     }
 
     fileprivate func updateViewPosition(offset: CGFloat) {
-        
         if !isTop {
             return
         }
