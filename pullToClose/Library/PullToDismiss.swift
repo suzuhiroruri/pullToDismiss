@@ -11,6 +11,7 @@ import UIKit
 
 open class PullToDismiss: NSObject {
 
+    /// デフォルト設定
     public struct Defaults {
         private init() {}
         public static let dismissableHeightPercentage: CGFloat = 0.33
@@ -46,17 +47,14 @@ open class PullToDismiss: NSObject {
     }
 
     private var panGesture: UIPanGestureRecognizer?
-    private var backgroundView: UIView?
     private var navigationBarHeight: CGFloat = 0.0
-    private var blurSaturationDeltaFactor: CGFloat = 1.8
-    convenience public init?(scrollView: UIScrollView) {
-        guard let viewController = type(of: self).viewControllerFromScrollView(scrollView) else {
-            print("a scrollView must be on the view controller.")
-            return nil
-        }
-        self.init(scrollView: scrollView, viewController: viewController)
-    }
 
+    /// 初期化
+    ///
+    /// - Parameters:
+    ///   - scrollView: scrollView
+    ///   - viewController: pullToDismissさせるViewController
+    ///   - navigationBar: navigationBar
     public init(scrollView: UIScrollView, viewController: UIViewController, navigationBar: UIView? = nil) {
         super.init()
         self.proxy = ScrollViewDelegateProxy(delegates: [self])
@@ -118,7 +116,6 @@ open class PullToDismiss: NSObject {
         }
 
         targetViewController?.view.layer.removeAllAnimations()
-        backgroundView?.layer.removeAllAnimations()
         viewPositionY = 0.0
     }
 
