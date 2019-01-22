@@ -8,11 +8,18 @@
 
 import UIKit
 
+protocol NavViewDelegate:class {
+    func tapCloseButton()
+}
+
+
 class NavView: UIView {
     
     @IBOutlet var navigationTitle: UILabel!
     @IBOutlet var cardNavigation: UIView!
     @IBOutlet var barImage: UIImageView!
+    
+    weak var navViewDelegate:NavViewDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -52,5 +59,6 @@ class NavView: UIView {
     }
     
     @IBAction func tapCloseButton(_ sender: UIButton) {
+        navViewDelegate?.tapCloseButton()
     }
 }

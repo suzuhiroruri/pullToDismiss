@@ -19,6 +19,7 @@ class ModalViewController: UIViewController {
     @IBOutlet var customNavigationView: NavView!
     @IBOutlet var backgroundView: UIView!
 
+    @IBOutlet var backgroundViewHeight: NSLayoutConstraint!
     var isTop = true
 
     
@@ -31,7 +32,6 @@ class ModalViewController: UIViewController {
 
         tableView.delegate = self
         tableView.dataSource = self
-        
         pullToDismiss = PullToDismiss(scrollView: tableView, viewController: self, navigationBar: customNavigationView)
         Config.shared.adaptSetting(pullToDismiss: pullToDismiss)
         pullToDismiss?.dismissAction = { [weak self] in
@@ -39,25 +39,19 @@ class ModalViewController: UIViewController {
         }
         pullToDismiss?.delegate = self
         
-        
         let statusBarHeight = UIApplication.shared.statusBarFrame.size.height
         let myBoundHeight: CGFloat = UIScreen.main.bounds.size.height
         viewHeight = myBoundHeight - statusBarHeight
-        
+        backgroundViewHeight.constant = myBoundHeight*2
         backgroundView.alpha = 0.9
-    }
-    
-    
-    
-    @IBAction func tapCloseButton(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
+        
+        customNavigationView?.navViewDelegate = self
     }
     
     @objc func dismiss(_: AnyObject?) {
         self.delegate?.dismiss()
         dismiss(animated: true) { [weak self] in
             self?.disissBlock?()
-            
         }
     }
 }
@@ -105,4 +99,14 @@ extension ModalViewController:UIScrollViewDelegate {
         backgroundView.alpha = 0.9
     }
     
+}
+
+extension ModalViewController:NavViewDelegate {
+    func tapCloseButton() {
+        UIView.animate(withDuration: 0.2, animations: { [weak self] in
+            self?.backgroundView.alpha = 0.0
+        })
+        self.delegate?.dismiss()
+        self.dismiss(animated: true, completion: nil)
+    }
 }
