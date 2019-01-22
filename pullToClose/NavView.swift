@@ -58,6 +58,9 @@ class NavView: UIView {
         barImage.tintColor = UIColor.gray
     }
     
+    /// 閉じるボタンをタップ
+    ///
+    /// - Parameter sender: sender
     @IBAction func tapCloseButton(_ sender: UIButton) {
         navViewDelegate?.tapCloseButton()
     }

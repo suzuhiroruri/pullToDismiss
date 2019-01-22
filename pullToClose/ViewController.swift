@@ -10,6 +10,8 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    private var style:UIStatusBarStyle = .default
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -17,9 +19,9 @@ class ViewController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return self.style
     }
-    var style:UIStatusBarStyle = .default
     
-    func changeStyle(useDefault:Bool) {
+    
+    private func changeStyle(useDefault:Bool) {
         UIView.animate(withDuration: 0.25) {
             if useDefault {
                 self.style = .default
@@ -46,7 +48,6 @@ class ViewController: UIViewController {
 
 extension ViewController:ModalViewControllerProtocol {
     func dismiss() {
-        
        changeStyle(useDefault: true)
     }
 }

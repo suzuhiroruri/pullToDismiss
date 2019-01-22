@@ -2,8 +2,8 @@
 //  PullToDismiss.swift
 //  PullToDismiss
 //
-//  Created by Suguru Kishimoto on 11/13/16.
-//  Copyright © 2016 Suguru Kishimoto. All rights reserved.
+//  Created by hir-suzuki on 2019/01/21.
+//  Copyright © 2019年 hir-suzuki. All rights reserved.
 //
 
 import Foundation

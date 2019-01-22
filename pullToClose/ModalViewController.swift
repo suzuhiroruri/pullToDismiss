@@ -20,12 +20,12 @@ class ModalViewController: UIViewController {
     @IBOutlet var backgroundView: UIView!
 
     @IBOutlet var backgroundViewHeight: NSLayoutConstraint!
-    var isTop = true
+    private var isTop = true
 
     
     weak var delegate:ModalViewControllerProtocol?
     
-    var viewHeight:CGFloat = 0.0
+    private var viewHeight:CGFloat = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +35,7 @@ class ModalViewController: UIViewController {
         pullToDismiss = PullToDismiss(scrollView: tableView, viewController: self, navigationBar: customNavigationView)
         Config.shared.adaptSetting(pullToDismiss: pullToDismiss)
         pullToDismiss?.dismissAction = { [weak self] in
-            self?.dismiss(nil)
+            self?.dismiss()
         }
         pullToDismiss?.delegate = self
         
@@ -48,7 +48,8 @@ class ModalViewController: UIViewController {
         customNavigationView?.navViewDelegate = self
     }
     
-    @objc func dismiss(_: AnyObject?) {
+    /// 画面閉じる
+    @objc func dismiss() {
         UIView.animate(withDuration: 0.2, animations: { [weak self] in
             self?.backgroundView.alpha = 0.0
         })
@@ -117,6 +118,6 @@ extension ModalViewController:UIScrollViewDelegate {
 extension ModalViewController:NavViewDelegate {
     /// 閉じるボタンをタップ
     func tapCloseButton() {
-        self.dismiss(self)
+        self.dismiss()
     }
 }
