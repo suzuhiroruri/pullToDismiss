@@ -18,10 +18,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0pq-9g-dPO">
-                                <rect key="frame" x="0.0" y="-1000" width="375" height="1667"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VQr-OO-dE7" userLabel="NavView">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                                 <subviews>
@@ -99,17 +95,12 @@
                             <constraint firstItem="FfI-IK-E1C" firstAttribute="trailing" secondItem="yGe-Jq-zjo" secondAttribute="trailing" id="Vd9-oX-D6L"/>
                             <constraint firstItem="yGe-Jq-zjo" firstAttribute="leading" secondItem="FfI-IK-E1C" secondAttribute="leading" id="ZBk-ea-Lj8"/>
                             <constraint firstItem="VQr-OO-dE7" firstAttribute="top" secondItem="sqt-Ir-98R" secondAttribute="top" id="fZJ-ay-bnC"/>
-                            <constraint firstItem="0pq-9g-dPO" firstAttribute="top" secondItem="sqt-Ir-98R" secondAttribute="top" constant="-1000" id="hZV-eh-msv"/>
                             <constraint firstItem="VQr-OO-dE7" firstAttribute="leading" secondItem="sqt-Ir-98R" secondAttribute="leading" id="jJ0-6B-waF"/>
-                            <constraint firstItem="FfI-IK-E1C" firstAttribute="trailing" secondItem="0pq-9g-dPO" secondAttribute="trailing" id="kqg-DI-uFI"/>
-                            <constraint firstItem="0pq-9g-dPO" firstAttribute="leading" secondItem="FfI-IK-E1C" secondAttribute="leading" id="mp7-Y1-E7E"/>
-                            <constraint firstItem="FfI-IK-E1C" firstAttribute="bottom" secondItem="0pq-9g-dPO" secondAttribute="bottom" id="rKf-Jf-6wz"/>
                             <constraint firstItem="VQr-OO-dE7" firstAttribute="width" secondItem="sqt-Ir-98R" secondAttribute="width" id="vTo-yh-snU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="FfI-IK-E1C"/>
                     </view>
                     <connections>
-                        <outlet property="backgroundView" destination="0pq-9g-dPO" id="onD-fF-B7P"/>
                         <outlet property="barImage" destination="CdJ-e8-Rag" id="Ik5-dR-Ce3"/>
                         <outlet property="cardView" destination="khU-W4-O2Z" id="g3K-uA-MtB"/>
                         <outlet property="customNavigationView" destination="VQr-OO-dE7" id="WcX-ng-SAG"/>

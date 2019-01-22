@@ -20,10 +20,8 @@ class ModalViewController: UIViewController {
     var disissBlock: (() -> Void)?
     
     @IBOutlet var barImage: UIImageView!
-    @IBOutlet var backgroundView: UIView!
     @IBOutlet var tableView: UITableView!
     
-    var isTop = true
     
     weak var delegate:ModalViewControllerProtocol?
     
@@ -55,8 +53,6 @@ class ModalViewController: UIViewController {
         
         barImage.image = barImage.image!.withRenderingMode(.alwaysTemplate)
         barImage.tintColor = UIColor.gray
-        
-        backgroundView.alpha = 0.9
     }
     
     
@@ -88,34 +84,4 @@ extension ModalViewController:UITableViewDelegate, UITableViewDataSource {
         cell.textLabel?.text = indexPath.row.description
         return cell
     }
-}
-
-
-extension ModalViewController:UIScrollViewDelegate {
-    
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        if tableView.contentOffset.y == 0.0 {
-            isTop = true
-        } else {
-            isTop = false
-        }
-    }
-    
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        guard isTop == true else {
-            return
-        }
-        guard let globalPoint = customNavigationView.superview?.convert(customNavigationView.frame.origin, to: nil).y else {
-            return
-        }
-        let scrollRate = globalPoint / viewHeight
-        let alpha = 0.9 - scrollRate*2
-        backgroundView.alpha = alpha
-    }
-    
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        backgroundView.alpha = 0.9
-    }
-    
 }

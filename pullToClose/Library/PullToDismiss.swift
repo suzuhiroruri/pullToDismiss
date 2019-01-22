@@ -66,6 +66,7 @@ open class PullToDismiss: NSObject {
         self.__scrollView?.delegate = self.proxy
         self.viewController = viewController
         self.__scrollView?.bounces = true
+        firstMakeBackgroundView()
         
         if let navigationBar = navigationBar ?? viewController.navigationController?.navigationBar {
             let gesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
@@ -100,7 +101,29 @@ open class PullToDismiss: NSObject {
     }
 
     // MARK: - shadow view
-
+    private func firstMakeBackgroundView() {
+        guard let backgroundEffect = backgroundEffect else {
+            return
+        }
+        let myBoundSize: CGSize = UIScreen.main.bounds.size
+        let frame = CGRect(x: 0, y: -myBoundSize.height, width: myBoundSize.width, height: myBoundSize.height*2)
+        
+        let backgroundView = backgroundEffect.makeBackgroundView()
+        backgroundView.frame = frame
+        
+        switch backgroundEffect.target {
+        case .targetViewController:
+            targetViewController?.view.addSubview(backgroundView)
+            backgroundView.superview?.sendSubview(toBack: backgroundView)
+            backgroundView.frame = frame
+        case .presentingViewController:
+            targetViewController?.presentingViewController?.view.addSubview(backgroundView)
+            backgroundView.frame = frame
+        }
+        
+        self.backgroundView = backgroundView
+    }
+    
     private func makeBackgroundView() {
         deleteBackgroundView()
         guard let backgroundEffect = backgroundEffect else {
@@ -233,16 +256,7 @@ open class PullToDismiss: NSObject {
         return nil
     }
 }
-/*
-extension PullToDismiss: UITableViewDelegate {
-}
 
-extension PullToDismiss: UICollectionViewDelegate {
-}
-
-extension PullToDismiss: UICollectionViewDelegateFlowLayout {
-}
-*/
 extension PullToDismiss: UIScrollViewDelegate {
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if dragging && isTop {
