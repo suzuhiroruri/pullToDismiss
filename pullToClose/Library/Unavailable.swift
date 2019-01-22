@@ -14,22 +14,22 @@ extension PullToDismiss {
     public weak var delegateProxy: AnyObject? {
         fatalError("\(#function) is no longer available")
     }
-    
+
     @available(*, unavailable, message: "unavailable")
     public weak var scrollViewDelegate: UIScrollViewDelegate? {
         fatalError("\(#function) is no longer available")
     }
-    
+
     @available(*, unavailable, message: "unavailable")
     public weak var tableViewDelegate: UITableViewDelegate? {
         fatalError("\(#function) is no longer available")
     }
-    
+
     @available(*, unavailable, message: "unavailable")
     public weak var collectionViewDelegate: UICollectionViewDelegate? {
         fatalError("\(#function) is no longer available")
     }
-    
+
     @available(*, unavailable, message: "unavailable")
     public weak var collectionViewDelegateFlowLayout: UICollectionViewDelegateFlowLayout? {
         fatalError("\(#function) is no longer available")

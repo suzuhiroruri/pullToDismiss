@@ -11,8 +11,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NavView" customModule="pullToClose" customModuleProvider="target">
             <connections>
-                <outlet property="barImage" destination="b3b-Qx-O4V" id="pEc-bX-bqi"/>
                 <outlet property="cardNavigation" destination="64c-wM-pzc" id="1Pz-fa-umr"/>
+                <outlet property="controlBar" destination="b3b-Qx-O4V" id="unG-7d-83P"/>
                 <outlet property="navigationTitle" destination="HJW-cJ-mmt" id="6yV-Nd-ok8"/>
             </connections>
         </placeholder>

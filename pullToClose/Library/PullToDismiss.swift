@@ -64,7 +64,7 @@ open class PullToDismiss: NSObject {
         self.__scrollView?.delegate = self.proxy
         self.viewController = viewController
         self.__scrollView?.bounces = true
-        
+
         if let navigationBar = navigationBar ?? viewController.navigationController?.navigationBar {
             let gesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
             navigationBar.addGestureRecognizer(gesture)
@@ -72,7 +72,7 @@ open class PullToDismiss: NSObject {
             self.panGesture = gesture
         }
     }
-    
+
     var isTop = true
     var isFirst = true
     deinit {
@@ -116,7 +116,7 @@ open class PullToDismiss: NSObject {
                 isTop = false
             }
         }
-        
+
         targetViewController?.view.layer.removeAllAnimations()
         backgroundView?.layer.removeAllAnimations()
         viewPositionY = 0.0
@@ -126,7 +126,7 @@ open class PullToDismiss: NSObject {
         if !isTop {
             return
         }
-        
+
         var addOffset: CGFloat = offset
         // avoid statusbar gone
         if viewPositionY >= 0 && viewPositionY < 0.05 {

@@ -10,18 +10,17 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    private var style:UIStatusBarStyle = .default
-    
+    private var style: UIStatusBarStyle = .default
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return self.style
     }
-    
-    
-    private func changeStyle(useDefault:Bool) {
+
+    private func changeStyle(useDefault: Bool) {
         UIView.animate(withDuration: 0.25) {
             if useDefault {
                 self.style = .default
@@ -31,7 +30,7 @@ class ViewController: UIViewController {
             self.setNeedsStatusBarAppearanceUpdate()
         }
     }
-    
+
     @IBAction func tapModalViewButton(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Modal", bundle: nil)
         guard let vc = storyboard.instantiateInitialViewController() as? ModalViewController else {
@@ -46,7 +45,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController:ModalViewControllerProtocol {
+extension ViewController: ModalViewControllerProtocol {
     func dismiss() {
        changeStyle(useDefault: true)
     }

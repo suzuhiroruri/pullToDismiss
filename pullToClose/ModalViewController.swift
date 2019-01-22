@@ -7,10 +7,9 @@
 //
 
 import UIKit
-protocol ModalViewControllerProtocol:class {
+protocol ModalViewControllerProtocol: class {
     func dismiss()
 }
-
 
 class ModalViewController: UIViewController {
     private var pullToDismiss: PullToDismiss?
@@ -22,11 +21,10 @@ class ModalViewController: UIViewController {
     @IBOutlet var backgroundViewHeight: NSLayoutConstraint!
     private var isTop = true
 
-    
-    weak var delegate:ModalViewControllerProtocol?
-    
-    private var viewHeight:CGFloat = 0.0
-    
+    weak var delegate: ModalViewControllerProtocol?
+
+    private var viewHeight: CGFloat = 0.0
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -38,16 +36,16 @@ class ModalViewController: UIViewController {
             self?.dismiss()
         }
         pullToDismiss?.delegate = self
-        
+
         let statusBarHeight = UIApplication.shared.statusBarFrame.size.height
         let myBoundHeight: CGFloat = UIScreen.main.bounds.size.height
         viewHeight = myBoundHeight - statusBarHeight
         backgroundViewHeight.constant = myBoundHeight*2
         backgroundView.alpha = 0.7
-        
+
         customNavigationView?.navViewDelegate = self
     }
-    
+
     /// 画面閉じる
     @objc func dismiss() {
         UIView.animate(withDuration: 0.2, animations: { [weak self] in
@@ -60,15 +58,15 @@ class ModalViewController: UIViewController {
     }
 }
 
-extension ModalViewController:UITableViewDelegate, UITableViewDataSource {
+extension ModalViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 100
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
         cell.textLabel?.text = indexPath.row.description
@@ -76,9 +74,8 @@ extension ModalViewController:UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+extension ModalViewController: UIScrollViewDelegate {
 
-extension ModalViewController:UIScrollViewDelegate {
-    
     /// スクロールを開始
     ///
     /// - Parameter scrollView: scrollView
@@ -89,7 +86,7 @@ extension ModalViewController:UIScrollViewDelegate {
             isTop = false
         }
     }
-    
+
     /// スクロール中
     ///
     /// - Parameter scrollView: scrollView
@@ -104,7 +101,7 @@ extension ModalViewController:UIScrollViewDelegate {
         let alpha = 0.7 - scrollRate*2
         backgroundView.alpha = alpha
     }
-    
+
     /// スクロール終了(指が離れた瞬間)
     ///
     /// - Parameters:
@@ -115,7 +112,7 @@ extension ModalViewController:UIScrollViewDelegate {
     }
 }
 
-extension ModalViewController:NavViewDelegate {
+extension ModalViewController: NavViewDelegate {
     /// 閉じるボタンをタップ
     func tapCloseButton() {
         self.dismiss()
