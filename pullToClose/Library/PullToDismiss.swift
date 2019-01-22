@@ -27,6 +27,8 @@ open class PullToDismiss: NSObject {
             proxy = ScrollViewDelegateProxy(delegates: delegates)
         }
     }
+
+    /// モーダルを閉じる画面の閾値
     public var dismissableHeightPercentage: CGFloat = Defaults.dismissableHeightPercentage {
         didSet {
             dismissableHeightPercentage = min(max(0.0, dismissableHeightPercentage), 1.0)
@@ -48,6 +50,9 @@ open class PullToDismiss: NSObject {
 
     private var panGesture: UIPanGestureRecognizer?
     private var navigationBarHeight: CGFloat = 0.0
+
+    /// モーダルviewの位置移動のフラグ
+    private var updatePositionFlag = false
 
     fileprivate var targetViewController: UIViewController? {
         return viewController?.navigationController ?? viewController
@@ -79,8 +84,6 @@ open class PullToDismiss: NSObject {
         }
     }
 
-    var cancelUpdatePositionFlag = false
-
     deinit {
         if let panGesture = panGesture {
             panGesture.view?.removeGestureRecognizer(panGesture)
@@ -91,6 +94,9 @@ open class PullToDismiss: NSObject {
         scrollView = nil
     }
 
+    /// 引っ張る動作の処理
+    ///
+    /// - Parameter gesture: UIPanGestureRecognizer
     @objc private func handlePanGesture(_ gesture: UIPanGestureRecognizer) {
         switch gesture.state {
         case .began:
@@ -110,9 +116,9 @@ open class PullToDismiss: NSObject {
     fileprivate func startDragging() {
         if let scrollView = self.scrollView {
             if scrollView.contentOffset.y <= CGFloat(0) {
-                cancelUpdatePositionFlag = false
+                updatePositionFlag = true
             } else {
-                cancelUpdatePositionFlag = true
+                updatePositionFlag = false
             }
         }
 
@@ -124,7 +130,7 @@ open class PullToDismiss: NSObject {
     ///
     /// - Parameter offset: 移動させる分のOffset
     fileprivate func updateViewPosition(offset: CGFloat) {
-        if cancelUpdatePositionFlag {
+        if !updatePositionFlag {
             return
         }
 
@@ -168,7 +174,7 @@ open class PullToDismiss: NSObject {
 
 extension PullToDismiss: UIScrollViewDelegate {
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if dragging && !cancelUpdatePositionFlag {
+        if dragging && updatePositionFlag {
             let diff = -(scrollView.contentOffset.y - previousContentOffsetY)
             if scrollView.contentOffset.y < -scrollView.contentInset.top || (targetViewController?.view.frame.origin.y ?? 0.0) > 0.0 {
                 updateViewPosition(offset: diff)
