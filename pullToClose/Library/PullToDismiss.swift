@@ -38,16 +38,24 @@ open class PullToDismiss: NSObject {
     fileprivate var previousContentOffsetY: CGFloat = 0.0
     fileprivate weak var viewController: UIViewController?
 
-    private var __scrollView: UIScrollView?
+    private var scrollView: UIScrollView?
 
     private var proxy: ScrollViewDelegateProxy? {
         didSet {
-            __scrollView?.delegate = proxy
+            scrollView?.delegate = proxy
         }
     }
 
     private var panGesture: UIPanGestureRecognizer?
     private var navigationBarHeight: CGFloat = 0.0
+
+    fileprivate var targetViewController: UIViewController? {
+        return viewController?.navigationController ?? viewController
+    }
+
+    fileprivate func dismiss() {
+        targetViewController?.dismiss(animated: true, completion: nil)
+    }
 
     /// 初期化
     ///
@@ -58,10 +66,10 @@ open class PullToDismiss: NSObject {
     public init(scrollView: UIScrollView, viewController: UIViewController, navigationBar: UIView? = nil) {
         super.init()
         self.proxy = ScrollViewDelegateProxy(delegates: [self])
-        self.__scrollView = scrollView
-        self.__scrollView?.delegate = self.proxy
+        self.scrollView = scrollView
+        self.scrollView?.delegate = self.proxy
         self.viewController = viewController
-        self.__scrollView?.bounces = true
+        self.scrollView?.bounces = true
 
         if let navigationBar = navigationBar ?? viewController.navigationController?.navigationBar {
             let gesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
@@ -79,16 +87,8 @@ open class PullToDismiss: NSObject {
         }
 
         proxy = nil
-        __scrollView?.delegate = nil
-        __scrollView = nil
-    }
-
-    fileprivate var targetViewController: UIViewController? {
-        return viewController?.navigationController ?? viewController
-    }
-
-    fileprivate func dismiss() {
-        targetViewController?.dismiss(animated: true, completion: nil)
+        scrollView?.delegate = nil
+        scrollView = nil
     }
 
     @objc private func handlePanGesture(_ gesture: UIPanGestureRecognizer) {
@@ -106,8 +106,9 @@ open class PullToDismiss: NSObject {
         }
     }
 
+    /// ドラッグ開始
     fileprivate func startDragging() {
-        if let scrollView = __scrollView {
+        if let scrollView = self.scrollView {
             if scrollView.contentOffset.y <= CGFloat(0) {
                 isTop = true
             } else {
@@ -119,6 +120,9 @@ open class PullToDismiss: NSObject {
         viewPositionY = 0.0
     }
 
+    /// Viewの位置更新
+    ///
+    /// - Parameter offset: 移動させる分のOffset
     fileprivate func updateViewPosition(offset: CGFloat) {
         if !isTop {
             return
@@ -133,6 +137,9 @@ open class PullToDismiss: NSObject {
         targetViewController?.view.frame.origin.y = max(0.0, viewPositionY)
     }
 
+    /// ドラッグ終了
+    ///
+    /// - Parameter velocity: スクロールの速度
     fileprivate func finishDragging(withVelocity velocity: CGPoint) {
         let originY = targetViewController?.view.frame.origin.y ?? 0.0
         let dismissableHeight = (targetViewController?.view.frame.height ?? 0.0) * dismissableHeightPercentage
