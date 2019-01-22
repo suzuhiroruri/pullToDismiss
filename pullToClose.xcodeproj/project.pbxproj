@@ -110,8 +110,8 @@
 			children = (
 				2990CCB321F5D7C70037A7B1 /* DelegateProxy.h */,
 				2990CCB021F5D7C60037A7B1 /* DelegateProxy.m */,
-				2990CCB221F5D7C70037A7B1 /* PullToDismiss.swift */,
 				2990CCB121F5D7C70037A7B1 /* ScrollViewDelegateProxy.swift */,
+				2990CCB221F5D7C70037A7B1 /* PullToDismiss.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
