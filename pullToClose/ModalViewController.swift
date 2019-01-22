@@ -13,14 +13,10 @@ protocol ModalViewControllerProtocol:class {
 
 
 class ModalViewController: UIViewController {
-    @IBOutlet var customNavigationView: UIView!
-    
-    @IBOutlet var cardView: UIView!
     private var pullToDismiss: PullToDismiss?
     var disissBlock: (() -> Void)?
-    
-    @IBOutlet var barImage: UIImageView!
     @IBOutlet var tableView: UITableView!
+    @IBOutlet var customNavigationView: NavView!
     
     
     weak var delegate:ModalViewControllerProtocol?
@@ -40,19 +36,10 @@ class ModalViewController: UIViewController {
         }
         pullToDismiss?.delegate = self
         
-        //右上と左下を角丸にする設定
-        cardView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: cardView.frame.height)
-        let path = UIBezierPath(roundedRect: cardView.bounds, byRoundingCorners: [.topLeft, .topRight], cornerRadii: CGSize(width: 15, height: 15))
-        let mask = CAShapeLayer()
-        mask.path = path.cgPath
-        cardView.layer.mask = mask
         
         let statusBarHeight = UIApplication.shared.statusBarFrame.size.height
         let myBoundHeight: CGFloat = UIScreen.main.bounds.size.height
         viewHeight = myBoundHeight - statusBarHeight
-        
-        barImage.image = barImage.image!.withRenderingMode(.alwaysTemplate)
-        barImage.tintColor = UIColor.gray
     }
     
     

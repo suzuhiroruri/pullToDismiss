@@ -9,9 +9,15 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NavView" customModule="pullToClose" customModuleProvider="target">
+            <connections>
+                <outlet property="barImage" destination="b3b-Qx-O4V" id="pEc-bX-bqi"/>
+                <outlet property="cardNavigation" destination="64c-wM-pzc" id="1Pz-fa-umr"/>
+                <outlet property="navigationTitle" destination="HJW-cJ-mmt" id="6yV-Nd-ok8"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="NavView" customModule="pullToClose" customModuleProvider="target">
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -49,17 +55,17 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1SC-sc-eST">
-                                            <rect key="frame" x="20" y="10" width="15" height="22"/>
+                                            <rect key="frame" x="20" y="14" width="15" height="22"/>
                                             <state key="normal" image="close"/>
                                             <connections>
-                                                <action selector="tapCloseButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="ji5-tu-RPD"/>
+                                                <action selector="tapCloseButton:" destination="-1" eventType="touchUpInside" id="e4t-jC-SfF"/>
                                             </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" red="0.91764705879999997" green="0.91764705879999997" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstItem="HJW-cJ-mmt" firstAttribute="centerX" secondItem="64c-wM-pzc" secondAttribute="centerX" id="176-Hp-8lM"/>
-                                        <constraint firstItem="1SC-sc-eST" firstAttribute="top" secondItem="64c-wM-pzc" secondAttribute="top" constant="10" id="8jp-2c-LEl"/>
+                                        <constraint firstItem="1SC-sc-eST" firstAttribute="centerY" secondItem="64c-wM-pzc" secondAttribute="centerY" id="Eoo-1e-UEV"/>
                                         <constraint firstItem="1SC-sc-eST" firstAttribute="leading" secondItem="64c-wM-pzc" secondAttribute="leading" constant="20" id="U8E-Qt-9JS"/>
                                         <constraint firstAttribute="height" constant="50" id="sf9-UL-iDM"/>
                                         <constraint firstItem="HJW-cJ-mmt" firstAttribute="centerY" secondItem="64c-wM-pzc" secondAttribute="centerY" id="yBZ-zn-j0O"/>
@@ -80,7 +86,6 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="oED-Em-eeI" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="8JM-hg-TiE"/>
                 <constraint firstItem="oED-Em-eeI" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" id="FMy-NS-cYT"/>
