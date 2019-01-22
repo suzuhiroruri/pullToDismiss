@@ -18,7 +18,6 @@
 		2990CCB921F5D7C70037A7B1 /* DelegateProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2990CCB021F5D7C60037A7B1 /* DelegateProxy.m */; };
 		2990CCBA21F5D7C70037A7B1 /* ScrollViewDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2990CCB121F5D7C70037A7B1 /* ScrollViewDelegateProxy.swift */; };
 		2990CCBB21F5D7C70037A7B1 /* PullToDismiss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2990CCB221F5D7C70037A7B1 /* PullToDismiss.swift */; };
-		2990CCBD21F5D7C70037A7B1 /* Unavailable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2990CCB521F5D7C70037A7B1 /* Unavailable.swift */; };
 		29AA49FC21F6B507007AA995 /* NavView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AA49FB21F6B507007AA995 /* NavView.swift */; };
 		29AA49FE21F6B521007AA995 /* NavView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29AA49FD21F6B521007AA995 /* NavView.xib */; };
 		93F5DF6F13CA6EB262F9A7CB /* Pods_pullToClose.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0416A19A146D6D8F22F5DBC5 /* Pods_pullToClose.framework */; };
@@ -41,7 +40,6 @@
 		2990CCB121F5D7C70037A7B1 /* ScrollViewDelegateProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollViewDelegateProxy.swift; sourceTree = "<group>"; };
 		2990CCB221F5D7C70037A7B1 /* PullToDismiss.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullToDismiss.swift; sourceTree = "<group>"; };
 		2990CCB321F5D7C70037A7B1 /* DelegateProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelegateProxy.h; sourceTree = "<group>"; };
-		2990CCB521F5D7C70037A7B1 /* Unavailable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Unavailable.swift; sourceTree = "<group>"; };
 		29AA49FB21F6B507007AA995 /* NavView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavView.swift; sourceTree = "<group>"; };
 		29AA49FD21F6B521007AA995 /* NavView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NavView.xib; sourceTree = "<group>"; };
 		BF8948DC938010B285C92EA5 /* Pods-pullToClose.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pullToClose.release.xcconfig"; path = "Target Support Files/Pods-pullToClose/Pods-pullToClose.release.xcconfig"; sourceTree = "<group>"; };
@@ -114,7 +112,6 @@
 				2990CCB021F5D7C60037A7B1 /* DelegateProxy.m */,
 				2990CCB221F5D7C70037A7B1 /* PullToDismiss.swift */,
 				2990CCB121F5D7C70037A7B1 /* ScrollViewDelegateProxy.swift */,
-				2990CCB521F5D7C70037A7B1 /* Unavailable.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -252,7 +249,6 @@
 				2990CC5121F55C820037A7B1 /* ModalViewController.swift in Sources */,
 				2990CCB921F5D7C70037A7B1 /* DelegateProxy.m in Sources */,
 				2990CCBB21F5D7C70037A7B1 /* PullToDismiss.swift in Sources */,
-				2990CCBD21F5D7C70037A7B1 /* Unavailable.swift in Sources */,
 				29AA49FC21F6B507007AA995 /* NavView.swift in Sources */,
 				2990CCBA21F5D7C70037A7B1 /* ScrollViewDelegateProxy.swift in Sources */,
 			);
