@@ -74,7 +74,6 @@ open class PullToDismiss: NSObject {
         self.scrollView = scrollView
         self.scrollView?.delegate = self.proxy
         self.viewController = viewController
-        self.scrollView?.bounces = true
 
         if let navigationBar = navigationBar ?? viewController.navigationController?.navigationBar {
             let gesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
