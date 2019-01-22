@@ -7,6 +7,7 @@
 //
 
 import UIKit
+
 protocol ModalViewControllerProtocol: class {
     func dismiss()
 }
@@ -23,13 +24,12 @@ class ModalViewController: UIViewController {
 
     weak var delegate: ModalViewControllerProtocol?
 
-    private var viewHeight: CGFloat = 0.0
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
         tableView.delegate = self
         tableView.dataSource = self
+
         pullToDismiss = PullToDismiss(scrollView: tableView, viewController: self, navigationBar: customNavigationView)
         Config.shared.adaptSetting(pullToDismiss: pullToDismiss)
         pullToDismiss?.dismissAction = { [weak self] in
@@ -37,10 +37,8 @@ class ModalViewController: UIViewController {
         }
         pullToDismiss?.delegate = self
 
-        let statusBarHeight = UIApplication.shared.statusBarFrame.size.height
-        let myBoundHeight: CGFloat = UIScreen.main.bounds.size.height
-        viewHeight = myBoundHeight - statusBarHeight
-        backgroundViewHeight.constant = myBoundHeight*2
+        // 背景のビュー設定
+        backgroundViewHeight.constant = UIScreen.main.bounds.size.height*2
         backgroundView.alpha = 0.7
 
         customNavigationView?.navViewDelegate = self
@@ -97,7 +95,7 @@ extension ModalViewController: UIScrollViewDelegate {
         guard let globalPoint = customNavigationView.superview?.convert(customNavigationView.frame.origin, to: nil).y else {
             return
         }
-        let scrollRate = globalPoint / viewHeight
+        let scrollRate = globalPoint / UIScreen.main.bounds.size.height
         let alpha = 0.7 - scrollRate*2
         backgroundView.alpha = alpha
     }

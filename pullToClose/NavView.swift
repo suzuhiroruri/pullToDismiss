@@ -45,9 +45,10 @@ class NavView: UIView {
     }
 
     private func commonInit() {
-        let myBoundWidth: CGFloat = UIScreen.main.bounds.size.width
+        let boundWidth: CGFloat = UIScreen.main.bounds.size.width
+
         //右上と左上を角丸にする設定
-        cardNavigation.frame = CGRect(x: 0, y: 0, width: myBoundWidth, height: cardNavigation.frame.height)
+        cardNavigation.frame = CGRect(x: 0, y: 0, width: boundWidth, height: cardNavigation.frame.height)
         let path = UIBezierPath(roundedRect: cardNavigation.bounds, byRoundingCorners: [.topLeft, .topRight], cornerRadii: CGSize(width: 15, height: 15))
         let mask = CAShapeLayer()
         mask.path = path.cgPath
