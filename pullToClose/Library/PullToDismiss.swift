@@ -79,8 +79,8 @@ open class PullToDismiss: NSObject {
         }
     }
 
-    var isTop = true
-    var isFirst = true
+    var cancelUpdatePositionFlag = false
+
     deinit {
         if let panGesture = panGesture {
             panGesture.view?.removeGestureRecognizer(panGesture)
@@ -110,9 +110,9 @@ open class PullToDismiss: NSObject {
     fileprivate func startDragging() {
         if let scrollView = self.scrollView {
             if scrollView.contentOffset.y <= CGFloat(0) {
-                isTop = true
+                cancelUpdatePositionFlag = false
             } else {
-                isTop = false
+                cancelUpdatePositionFlag = true
             }
         }
 
@@ -124,7 +124,7 @@ open class PullToDismiss: NSObject {
     ///
     /// - Parameter offset: 移動させる分のOffset
     fileprivate func updateViewPosition(offset: CGFloat) {
-        if !isTop {
+        if cancelUpdatePositionFlag {
             return
         }
 
@@ -168,7 +168,7 @@ open class PullToDismiss: NSObject {
 
 extension PullToDismiss: UIScrollViewDelegate {
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if dragging && isTop {
+        if dragging && !cancelUpdatePositionFlag {
             let diff = -(scrollView.contentOffset.y - previousContentOffsetY)
             if scrollView.contentOffset.y < -scrollView.contentInset.top || (targetViewController?.view.frame.origin.y ?? 0.0) > 0.0 {
                 updateViewPosition(offset: diff)
