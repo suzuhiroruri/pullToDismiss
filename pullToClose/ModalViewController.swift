@@ -31,6 +31,7 @@ class ModalViewController: UIViewController {
         tableView.dataSource = self
 
         pullToDismiss = PullToDismiss(scrollView: tableView, viewController: self, navigationBar: customNavigationView)
+        Config.shared.dismissableHeightPercentage = 50.0
         Config.shared.adaptSetting(pullToDismiss: pullToDismiss)
         pullToDismiss?.dismissAction = { [weak self] in
             self?.dismiss()

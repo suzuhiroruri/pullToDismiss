@@ -14,6 +14,6 @@ class Config {
     var dismissableHeightPercentage = PullToDismiss.Defaults.dismissableHeightPercentage
 
     func adaptSetting(pullToDismiss: PullToDismiss?) {
-        pullToDismiss?.dismissableHeightPercentage = 50.0
+        pullToDismiss?.dismissableHeightPercentage = dismissableHeightPercentage
     }
 }
