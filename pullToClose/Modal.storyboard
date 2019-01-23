@@ -18,6 +18,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fqK-9c-ifC">
+                                <rect key="frame" x="0.0" y="567" width="375" height="100"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="MVi-BT-62l"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uic-Yw-jmS" customClass="PTDCustomNavigationView" customModule="pullToClose" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="20" width="375" height="100"/>
                                 <constraints>
@@ -31,9 +38,12 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="FfI-IK-E1C" firstAttribute="bottom" secondItem="yGe-Jq-zjo" secondAttribute="bottom" id="Cjn-xV-AHy"/>
+                            <constraint firstItem="FfI-IK-E1C" firstAttribute="trailing" secondItem="fqK-9c-ifC" secondAttribute="trailing" id="Dx7-jG-Hp8"/>
+                            <constraint firstItem="fqK-9c-ifC" firstAttribute="leading" secondItem="FfI-IK-E1C" secondAttribute="leading" id="QFh-EY-aQ0"/>
                             <constraint firstItem="FfI-IK-E1C" firstAttribute="trailing" secondItem="uic-Yw-jmS" secondAttribute="trailing" id="TwG-Ci-PZa"/>
                             <constraint firstItem="FfI-IK-E1C" firstAttribute="trailing" secondItem="yGe-Jq-zjo" secondAttribute="trailing" id="Vd9-oX-D6L"/>
                             <constraint firstItem="yGe-Jq-zjo" firstAttribute="leading" secondItem="FfI-IK-E1C" secondAttribute="leading" id="ZBk-ea-Lj8"/>
+                            <constraint firstItem="FfI-IK-E1C" firstAttribute="bottom" secondItem="fqK-9c-ifC" secondAttribute="bottom" id="hVS-kt-KrG"/>
                             <constraint firstItem="uic-Yw-jmS" firstAttribute="leading" secondItem="FfI-IK-E1C" secondAttribute="leading" id="k23-dU-Vf7"/>
                             <constraint firstItem="yGe-Jq-zjo" firstAttribute="top" secondItem="uic-Yw-jmS" secondAttribute="bottom" id="qwx-rx-1JD"/>
                             <constraint firstItem="uic-Yw-jmS" firstAttribute="top" secondItem="FfI-IK-E1C" secondAttribute="top" id="sRy-QJ-7sT"/>
@@ -41,6 +51,8 @@
                         <viewLayoutGuide key="safeArea" id="FfI-IK-E1C"/>
                     </view>
                     <connections>
+                        <outlet property="backgroundView" destination="fqK-9c-ifC" id="koW-Dy-vq4"/>
+                        <outlet property="backgroundViewHeight" destination="MVi-BT-62l" id="0VI-Bz-4QU"/>
                         <outlet property="customNavigationView" destination="uic-Yw-jmS" id="5Rv-LY-qNC"/>
                         <outlet property="tableView" destination="yGe-Jq-zjo" id="j6U-8j-9DZ"/>
                     </connections>

@@ -50,8 +50,6 @@ open class PTDPullToDismiss: NSObject {
 
     private var panGesture: UIPanGestureRecognizer?
     private var navigationBarHeight: CGFloat = 0.0
-    
-    private var backgroundView:UIView?
 
     /// モーダルviewの位置移動のフラグ
     private var updatePositionFlag = false
@@ -62,9 +60,6 @@ open class PTDPullToDismiss: NSObject {
     }
 
     fileprivate func dismiss() {
-        UIView.animate(withDuration: 0.2, animations: { [weak self] in
-            self?.backgroundView?.alpha = 0.0
-        })
         targetViewController?.dismiss(animated: true, completion: nil)
     }
 
@@ -80,7 +75,6 @@ open class PTDPullToDismiss: NSObject {
         self.scrollView = scrollView
         self.scrollView?.delegate = self.proxy
         self.viewController = viewController
-        let boundSize = UIScreen.main.bounds
 
         if let navigationBar = navigationBar ?? viewController.navigationController?.navigationBar {
             let gesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
@@ -88,17 +82,6 @@ open class PTDPullToDismiss: NSObject {
             self.navigationBarHeight = navigationBar.frame.height
             self.panGesture = gesture
         }
-        
-        // 背景のビュー設定
-        let backgroundViewFrame = CGRect(x: 0, y: -boundSize.height, width: boundSize.width, height: boundSize.height*2)
-        self.backgroundView = UIView.init(frame: backgroundViewFrame)
-        guard let backgroundView = self.backgroundView else {
-            return
-        }
-        backgroundView.backgroundColor = UIColor.black
-        backgroundView.alpha = 0.7
-        self.viewController?.view.addSubview(backgroundView)
-        self.viewController?.view.sendSubview(toBack: backgroundView)
     }
 
     deinit {
@@ -190,7 +173,6 @@ open class PTDPullToDismiss: NSObject {
 }
 
 extension PTDPullToDismiss: UIScrollViewDelegate {
-    
     /// スクロールを検知した瞬間
     ///
     /// - Parameter scrollView: scrollView
@@ -200,7 +182,6 @@ extension PTDPullToDismiss: UIScrollViewDelegate {
         previousContentOffsetY = scrollView.contentOffset.y
     }
     
-
     /// スクロール中
     ///
     /// - Parameter scrollView: scrollView
@@ -209,8 +190,7 @@ extension PTDPullToDismiss: UIScrollViewDelegate {
         if targetViewController?.view.frame.origin.y == 0.0 && previousContentOffsetY < scrollView.contentOffset.y {
             updatePositionFlag = false
         }
-        
-        
+
         if dragging && updatePositionFlag {
             let diff = -(scrollView.contentOffset.y - previousContentOffsetY)
             if scrollView.contentOffset.y < -scrollView.contentInset.top || (targetViewController?.view.frame.origin.y ?? 0.0) > 0.0 {
@@ -218,16 +198,6 @@ extension PTDPullToDismiss: UIScrollViewDelegate {
                 scrollView.contentOffset.y = -scrollView.contentInset.top
             }
             previousContentOffsetY = scrollView.contentOffset.y
-            
-            guard let globalPoint = targetViewController?.view.frame.origin.y else {
-                return
-            }
-            let scrollRate = globalPoint / UIScreen.main.bounds.size.height
-            let alpha = 0.7 - scrollRate*2
-            guard let backgroundView = self.backgroundView else {
-                return
-            }
-            backgroundView.alpha = alpha
         }
     }
 
@@ -241,10 +211,5 @@ extension PTDPullToDismiss: UIScrollViewDelegate {
         finishDragging(withVelocity: velocity)
         dragging = false
         previousContentOffsetY = 0.0
-        guard let backgroundView = self.backgroundView else {
-            return
-        }
-        backgroundView.alpha = 0.7
     }
-    
 }
