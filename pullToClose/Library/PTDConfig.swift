@@ -1,5 +1,5 @@
 //
-//  PullToDismissConfig.swift
+//  PTDConfig.swift
 //  pullToClose
 //
 //  Created by hir-suzuki on 2019/01/21.
@@ -8,8 +8,8 @@
 
 import Foundation
 
-class Config {
-    static let shared: Config = Config()
+class PTDConfig {
+    static let shared: PTDConfig = PTDConfig()
 
     var dismissableHeightPercentage = PTDPullToDismiss.Defaults.dismissableHeightPercentage
 

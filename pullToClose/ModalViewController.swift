@@ -16,7 +16,7 @@ class ModalViewController: UIViewController {
     private var pullToDismiss: PTDPullToDismiss?
     var dimissBlock: (() -> Void)?
     @IBOutlet var tableView: UITableView!
-    @IBOutlet var customNavigationView: NavView!
+    @IBOutlet var customNavigationView: PTDCustomNavigationView!
     @IBOutlet var backgroundView: UIView!
 
     @IBOutlet var backgroundViewHeight: NSLayoutConstraint!
@@ -32,8 +32,8 @@ class ModalViewController: UIViewController {
 
         customNavigationView.navigationTitle.text = "タイトル"
         pullToDismiss = PTDPullToDismiss(scrollView: tableView, viewController: self, navigationBar: customNavigationView)
-        Config.shared.dismissableHeightPercentage = 80.0
-        Config.shared.adaptSetting(pullToDismiss: pullToDismiss)
+        PTDConfig.shared.dismissableHeightPercentage = 80.0
+        PTDConfig.shared.adaptSetting(pullToDismiss: pullToDismiss)
         pullToDismiss?.dismissAction = { [weak self] in
             self?.dismiss()
         }
@@ -43,7 +43,7 @@ class ModalViewController: UIViewController {
         backgroundViewHeight.constant = UIScreen.main.bounds.size.height*2
         backgroundView.alpha = 0.7
 
-        customNavigationView?.navViewDelegate = self
+        customNavigationView?.delegate = self
     }
 
     /// 画面閉じる
@@ -112,7 +112,7 @@ extension ModalViewController: UIScrollViewDelegate {
     }
 }
 
-extension ModalViewController: NavViewDelegate {
+extension ModalViewController: PTDCustomNavigationViewDelegate {
     /// 閉じるボタンをタップ
     func tapCloseButton() {
         self.dismiss()

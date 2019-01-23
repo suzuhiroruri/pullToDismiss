@@ -1,5 +1,5 @@
 //
-//  NavView.swift
+//  PTDCustomNavigationView.swift
 //  pullToClose
 //
 //  Created by hir-suzuki on 2019/01/22.
@@ -8,17 +8,17 @@
 
 import UIKit
 
-protocol NavViewDelegate: class {
+protocol PTDCustomNavigationViewDelegate: class {
     func tapCloseButton()
 }
 
-class NavView: UIView {
+class PTDCustomNavigationView: UIView {
 
     @IBOutlet var navigationTitle: UILabel!
     @IBOutlet var cardNavigation: UIView!
     @IBOutlet var controlBar: UIImageView!
 
-    weak var navViewDelegate: NavViewDelegate?
+    weak var delegate: PTDCustomNavigationViewDelegate?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -34,7 +34,7 @@ class NavView: UIView {
 
     // xibファイルを読み込んでviewに重ねる
     fileprivate func nibInit() {
-        guard let view: UIView = Bundle.main.loadNibNamed("NavView", owner: self, options: nil)?.first as? UIView else {
+        guard let view: UIView = Bundle.main.loadNibNamed("PTDCustomNavigationView", owner: self, options: nil)?.first as? UIView else {
             return
         }
         view.frame = self.bounds
@@ -65,6 +65,6 @@ class NavView: UIView {
     ///
     /// - Parameter sender: sender
     @IBAction func tapCloseButton(_ sender: UIButton) {
-        navViewDelegate?.tapCloseButton()
+        delegate?.tapCloseButton()
     }
 }
