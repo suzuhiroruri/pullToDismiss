@@ -62,6 +62,10 @@ open class PTDPullToDismiss: NSObject {
     fileprivate func dismiss() {
         targetViewController?.dismiss(animated: true, completion: nil)
     }
+    
+    /// 背景ビュー
+    public var backgroundView:UIView?
+
 
     /// 初期化
     ///
@@ -82,6 +86,19 @@ open class PTDPullToDismiss: NSObject {
             self.navigationBarHeight = navigationBar.frame.height
             self.panGesture = gesture
         }
+        
+        let boundSize = UIScreen.main.bounds
+        // 背景のビュー設定
+        let backgroundViewFrame = CGRect(x: 0, y: -boundSize.height, width: boundSize.width, height: boundSize.height*2)
+        self.backgroundView = UIView.init(frame: backgroundViewFrame)
+        guard let backgroundView = self.backgroundView else {
+            return
+        }
+        backgroundView.backgroundColor = UIColor.black
+        backgroundView.alpha = 0.7
+        self.viewController?.view.addSubview(backgroundView)
+        self.viewController?.view.sendSubview(toBack: backgroundView)
+
     }
 
     deinit {
@@ -156,6 +173,10 @@ open class PTDPullToDismiss: NSObject {
             UIView.perform(.delete, on: [], options: [.allowUserInteraction], animations: { [weak self] in
                 self?.targetViewController?.view.frame.origin.y = 0.0
             })
+            guard let backgroundView = self.backgroundView else {
+                return
+            }
+            backgroundView.alpha = 0.7
         }
         viewPositionY = 0.0
     }
@@ -198,6 +219,16 @@ extension PTDPullToDismiss: UIScrollViewDelegate {
                 scrollView.contentOffset.y = -scrollView.contentInset.top
             }
             previousContentOffsetY = scrollView.contentOffset.y
+            
+            guard let globalPoint = targetViewController?.view.frame.origin.y else {
+                return
+            }
+            let scrollRate = globalPoint / UIScreen.main.bounds.size.height
+            let alpha = 0.7 - scrollRate*2
+            guard let backgroundView = self.backgroundView else {
+                return
+            }
+            backgroundView.alpha = alpha
         }
     }
 
