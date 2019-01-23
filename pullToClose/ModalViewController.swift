@@ -30,6 +30,7 @@ class ModalViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
 
+        customNavigationView.navigationTitle.text = "タイトル"
         pullToDismiss = PTDPullToDismiss(scrollView: tableView, viewController: self, navigationBar: customNavigationView)
         Config.shared.dismissableHeightPercentage = 80.0
         Config.shared.adaptSetting(pullToDismiss: pullToDismiss)
