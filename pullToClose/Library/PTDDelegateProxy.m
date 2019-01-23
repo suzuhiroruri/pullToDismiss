@@ -1,18 +1,18 @@
 //
-//  DelegateProxy.m
+//  PTDDelegateProxy.m
 //  PullToDismiss
 //
 //  Created by hir-suzuki on 2019/01/21.
 //  Copyright © 2019年 hir-suzuki. All rights reserved.
 //
 
-#import "DelegateProxy.h"
+#import "PTDDelegateProxy.h"
 
-@interface DelegateProxy ()
+@interface PTDDelegateProxy ()
 @property (nonnull, nonatomic, strong) NSHashTable<NSObject *> *delegates;
 @end
 
-@implementation DelegateProxy
+@implementation PTDDelegateProxy
 
 - (instancetype)initWithDelegates:(NSArray<id> *)delegates {
     self = [super init];

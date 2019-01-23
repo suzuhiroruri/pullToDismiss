@@ -11,9 +11,9 @@ import Foundation
 class Config {
     static let shared: Config = Config()
 
-    var dismissableHeightPercentage = PullToDismiss.Defaults.dismissableHeightPercentage
+    var dismissableHeightPercentage = PTDPullToDismiss.Defaults.dismissableHeightPercentage
 
-    func adaptSetting(pullToDismiss: PullToDismiss?) {
+    func adaptSetting(pullToDismiss: PTDPullToDismiss?) {
         pullToDismiss?.dismissableHeightPercentage = dismissableHeightPercentage
     }
 }

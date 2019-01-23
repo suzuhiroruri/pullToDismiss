@@ -9,5 +9,5 @@
 #ifndef pullToClose_Bridging_Header_h
 #define pullToClose_Bridging_Header_h
 
-#import "DelegateProxy.h"
+#import "PTDDelegateProxy.h"
 #endif /* pullToClose_Bridging_Header_h */

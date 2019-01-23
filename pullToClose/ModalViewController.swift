@@ -13,7 +13,7 @@ protocol ModalViewControllerProtocol: class {
 }
 
 class ModalViewController: UIViewController {
-    private var pullToDismiss: PullToDismiss?
+    private var pullToDismiss: PTDPullToDismiss?
     var dimissBlock: (() -> Void)?
     @IBOutlet var tableView: UITableView!
     @IBOutlet var customNavigationView: NavView!
@@ -30,7 +30,7 @@ class ModalViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
 
-        pullToDismiss = PullToDismiss(scrollView: tableView, viewController: self, navigationBar: customNavigationView)
+        pullToDismiss = PTDPullToDismiss(scrollView: tableView, viewController: self, navigationBar: customNavigationView)
         Config.shared.dismissableHeightPercentage = 80.0
         Config.shared.adaptSetting(pullToDismiss: pullToDismiss)
         pullToDismiss?.dismissAction = { [weak self] in

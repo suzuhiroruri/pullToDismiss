@@ -1,5 +1,5 @@
 //
-//  DelegateProxy.h
+//  PTDDelegateProxy.h
 //  PullToDismiss
 //
 //  Created by hir-suzuki on 2019/01/21.
@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DelegateProxy : NSObject
+@interface PTDDelegateProxy : NSObject
 - (nonnull instancetype)initWithDelegates:(NSArray<id> * __nonnull)delegates NS_REFINED_FOR_SWIFT;
 @end

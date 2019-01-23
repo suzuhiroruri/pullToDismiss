@@ -15,9 +15,9 @@
 		2990CC5121F55C820037A7B1 /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2990CC5021F55C820037A7B1 /* ModalViewController.swift */; };
 		2990CC5321F55CB20037A7B1 /* Modal.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2990CC5221F55CB20037A7B1 /* Modal.storyboard */; };
 		2990CC5521F568B70037A7B1 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2990CC5421F568B70037A7B1 /* Config.swift */; };
-		2990CCB921F5D7C70037A7B1 /* DelegateProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2990CCB021F5D7C60037A7B1 /* DelegateProxy.m */; };
-		2990CCBA21F5D7C70037A7B1 /* ScrollViewDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2990CCB121F5D7C70037A7B1 /* ScrollViewDelegateProxy.swift */; };
-		2990CCBB21F5D7C70037A7B1 /* PullToDismiss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2990CCB221F5D7C70037A7B1 /* PullToDismiss.swift */; };
+		2990CCB921F5D7C70037A7B1 /* PTDDelegateProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2990CCB021F5D7C60037A7B1 /* PTDDelegateProxy.m */; };
+		2990CCBA21F5D7C70037A7B1 /* PTDScrollViewDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2990CCB121F5D7C70037A7B1 /* PTDScrollViewDelegateProxy.swift */; };
+		2990CCBB21F5D7C70037A7B1 /* PTDPullToDismiss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2990CCB221F5D7C70037A7B1 /* PTDPullToDismiss.swift */; };
 		29AA49FC21F6B507007AA995 /* NavView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AA49FB21F6B507007AA995 /* NavView.swift */; };
 		29AA49FE21F6B521007AA995 /* NavView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29AA49FD21F6B521007AA995 /* NavView.xib */; };
 /* End PBXBuildFile section */
@@ -34,10 +34,10 @@
 		2990CC5221F55CB20037A7B1 /* Modal.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Modal.storyboard; sourceTree = "<group>"; };
 		2990CC5421F568B70037A7B1 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		2990CCAF21F5D7670037A7B1 /* pullToClose-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "pullToClose-Bridging-Header.h"; sourceTree = "<group>"; };
-		2990CCB021F5D7C60037A7B1 /* DelegateProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelegateProxy.m; sourceTree = "<group>"; };
-		2990CCB121F5D7C70037A7B1 /* ScrollViewDelegateProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollViewDelegateProxy.swift; sourceTree = "<group>"; };
-		2990CCB221F5D7C70037A7B1 /* PullToDismiss.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullToDismiss.swift; sourceTree = "<group>"; };
-		2990CCB321F5D7C70037A7B1 /* DelegateProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelegateProxy.h; sourceTree = "<group>"; };
+		2990CCB021F5D7C60037A7B1 /* PTDDelegateProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTDDelegateProxy.m; sourceTree = "<group>"; };
+		2990CCB121F5D7C70037A7B1 /* PTDScrollViewDelegateProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTDScrollViewDelegateProxy.swift; sourceTree = "<group>"; };
+		2990CCB221F5D7C70037A7B1 /* PTDPullToDismiss.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTDPullToDismiss.swift; sourceTree = "<group>"; };
+		2990CCB321F5D7C70037A7B1 /* PTDDelegateProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTDDelegateProxy.h; sourceTree = "<group>"; };
 		29AA49FB21F6B507007AA995 /* NavView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavView.swift; sourceTree = "<group>"; };
 		29AA49FD21F6B521007AA995 /* NavView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NavView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -92,10 +92,10 @@
 		2990CC8A21F5D17E0037A7B1 /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				2990CCB321F5D7C70037A7B1 /* DelegateProxy.h */,
-				2990CCB021F5D7C60037A7B1 /* DelegateProxy.m */,
-				2990CCB221F5D7C70037A7B1 /* PullToDismiss.swift */,
-				2990CCB121F5D7C70037A7B1 /* ScrollViewDelegateProxy.swift */,
+				2990CCB321F5D7C70037A7B1 /* PTDDelegateProxy.h */,
+				2990CCB021F5D7C60037A7B1 /* PTDDelegateProxy.m */,
+				2990CCB221F5D7C70037A7B1 /* PTDPullToDismiss.swift */,
+				2990CCB121F5D7C70037A7B1 /* PTDScrollViewDelegateProxy.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -178,10 +178,10 @@
 				2990CC5521F568B70037A7B1 /* Config.swift in Sources */,
 				2990CC2F21F55A1A0037A7B1 /* AppDelegate.swift in Sources */,
 				2990CC5121F55C820037A7B1 /* ModalViewController.swift in Sources */,
-				2990CCB921F5D7C70037A7B1 /* DelegateProxy.m in Sources */,
-				2990CCBB21F5D7C70037A7B1 /* PullToDismiss.swift in Sources */,
+				2990CCB921F5D7C70037A7B1 /* PTDDelegateProxy.m in Sources */,
+				2990CCBB21F5D7C70037A7B1 /* PTDPullToDismiss.swift in Sources */,
 				29AA49FC21F6B507007AA995 /* NavView.swift in Sources */,
-				2990CCBA21F5D7C70037A7B1 /* ScrollViewDelegateProxy.swift in Sources */,
+				2990CCBA21F5D7C70037A7B1 /* PTDScrollViewDelegateProxy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

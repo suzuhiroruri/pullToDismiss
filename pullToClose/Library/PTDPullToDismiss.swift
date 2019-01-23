@@ -1,5 +1,5 @@
 //
-//  PullToDismiss.swift
+//  PTDPullToDismiss.swift
 //  PullToDismiss
 //
 //  Created by hir-suzuki on 2019/01/21.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-open class PullToDismiss: NSObject {
+open class PTDPullToDismiss: NSObject {
 
     /// デフォルト設定
     public struct Defaults {
@@ -24,7 +24,7 @@ open class PullToDismiss: NSObject {
             if let delegate = delegate {
                 delegates.append(delegate)
             }
-            proxy = ScrollViewDelegateProxy(delegates: delegates)
+            proxy = PTDScrollViewDelegateProxy(delegates: delegates)
         }
     }
 
@@ -42,7 +42,7 @@ open class PullToDismiss: NSObject {
 
     private var scrollView: UIScrollView?
 
-    private var proxy: ScrollViewDelegateProxy? {
+    private var proxy: PTDScrollViewDelegateProxy? {
         didSet {
             scrollView?.delegate = proxy
         }
@@ -71,7 +71,7 @@ open class PullToDismiss: NSObject {
     ///   - navigationBar: navigationBar
     public init(scrollView: UIScrollView, viewController: UIViewController, navigationBar: UIView? = nil) {
         super.init()
-        self.proxy = ScrollViewDelegateProxy(delegates: [self])
+        self.proxy = PTDScrollViewDelegateProxy(delegates: [self])
         self.scrollView = scrollView
         self.scrollView?.delegate = self.proxy
         self.viewController = viewController
@@ -172,7 +172,7 @@ open class PullToDismiss: NSObject {
     }
 }
 
-extension PullToDismiss: UIScrollViewDelegate {
+extension PTDPullToDismiss: UIScrollViewDelegate {
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if dragging && updatePositionFlag {
             let diff = -(scrollView.contentOffset.y - previousContentOffsetY)
