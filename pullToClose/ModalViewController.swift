@@ -17,10 +17,6 @@ class ModalViewController: UIViewController {
     var dimissBlock: (() -> Void)?
     @IBOutlet var tableView: UITableView!
     @IBOutlet var customNavigationView: PTDCustomNavigationView!
-    @IBOutlet var backgroundView: UIView!
-
-    @IBOutlet var backgroundViewHeight: NSLayoutConstraint!
-    private var isTop = true
 
     weak var delegate: ModalViewControllerProtocol?
 
@@ -39,18 +35,11 @@ class ModalViewController: UIViewController {
         }
         pullToDismiss?.delegate = self
 
-        // 背景のビュー設定
-        backgroundViewHeight.constant = UIScreen.main.bounds.size.height*2
-        backgroundView.alpha = 0.7
-
         customNavigationView?.delegate = self
     }
 
     /// 画面閉じる
     @objc func dismiss() {
-        UIView.animate(withDuration: 0.2, animations: { [weak self] in
-            self?.backgroundView.alpha = 0.0
-        })
         dismiss(animated: true) { [weak self] in
             self?.dimissBlock?()
         }
@@ -71,44 +60,6 @@ extension ModalViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = UITableViewCell()
         cell.textLabel?.text = indexPath.row.description
         return cell
-    }
-}
-
-extension ModalViewController: UIScrollViewDelegate {
-
-    /// スクロールを開始
-    ///
-    /// - Parameter scrollView: scrollView
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        if tableView.contentOffset.y == 0.0 {
-            isTop = true
-        } else {
-            isTop = false
-        }
-    }
-
-    /// スクロール中
-    ///
-    /// - Parameter scrollView: scrollView
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        guard isTop == true else {
-            return
-        }
-        guard let globalPoint = customNavigationView.superview?.convert(customNavigationView.frame.origin, to: nil).y else {
-            return
-        }
-        let scrollRate = globalPoint / UIScreen.main.bounds.size.height
-        let alpha = 0.7 - scrollRate*2
-        backgroundView.alpha = alpha
-    }
-
-    /// スクロール終了(指が離れた瞬間)
-    ///
-    /// - Parameters:
-    ///   - scrollView: scrollView
-    ///   - decelerate: 慣性が効いているかどうか
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        backgroundView.alpha = 0.7
     }
 }
 
