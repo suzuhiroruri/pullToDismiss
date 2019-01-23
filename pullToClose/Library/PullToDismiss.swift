@@ -145,7 +145,7 @@ open class PullToDismiss: NSObject {
 
     /// ドラッグ終了
     ///
-    /// - Parameter velocity: スクロールの速度
+    /// - Parameter velocity: ドラッグ終了時の位置
     fileprivate func finishDragging(withVelocity velocity: CGPoint) {
         let originY = targetViewController?.view.frame.origin.y ?? 0.0
         let dismissableHeight = (targetViewController?.view.frame.height ?? 0.0) * dismissableHeightPercentage
