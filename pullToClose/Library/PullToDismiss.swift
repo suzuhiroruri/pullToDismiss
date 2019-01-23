@@ -54,6 +54,7 @@ open class PullToDismiss: NSObject {
     /// モーダルviewの位置移動のフラグ
     private var updatePositionFlag = false
 
+    /// pullToDismissさせるviewController
     fileprivate var targetViewController: UIViewController? {
         return viewController?.navigationController ?? viewController
     }

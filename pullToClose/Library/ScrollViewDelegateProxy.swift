@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+/// scrollViewのプロキシ
+/// ModalViewで設定されたscrollViewのスクロールをpullToDismissに反映させる
 class ScrollViewDelegateProxy: DelegateProxy, UIScrollViewDelegate {
     @nonobjc convenience init(delegates: [UIScrollViewDelegate]) {
         self.init(__delegates: delegates)
