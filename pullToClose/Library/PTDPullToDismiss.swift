@@ -40,11 +40,20 @@ open class PTDPullToDismiss: NSObject {
     fileprivate var previousContentOffsetY: CGFloat = 0.0
     fileprivate weak var viewController: UIViewController?
 
-    private var scrollView: UIScrollView?
+    /// pullToDismissさせるviewController
+    fileprivate var targetViewController: UIViewController? {
+        return viewController?.navigationController ?? viewController
+    }
+    
+    /// pullToDismissさせるviewControllerの中にあるscrollView
+    private var scrollViewInsideTargetViewController: UIScrollView?
+    
+    /// pullToDismissさせるviewControllerの中にあるscrollViewをスクロールした時のフラグ
+    private var scrollingInsideScrollViewFlag:Bool = false
 
     private var proxy: PTDScrollViewDelegateProxy? {
         didSet {
-            scrollView?.delegate = proxy
+            scrollViewInsideTargetViewController?.delegate = proxy
         }
     }
 
@@ -53,11 +62,6 @@ open class PTDPullToDismiss: NSObject {
 
     /// モーダルviewの位置移動のフラグ
     private var updatePositionFlag = false
-
-    /// pullToDismissさせるviewController
-    fileprivate var targetViewController: UIViewController? {
-        return viewController?.navigationController ?? viewController
-    }
 
     fileprivate func dismiss() {
         targetViewController?.dismiss(animated: true, completion: nil)
@@ -76,8 +80,8 @@ open class PTDPullToDismiss: NSObject {
     public init(scrollView: UIScrollView, viewController: UIViewController, navigationBar: UIView? = nil) {
         super.init()
         self.proxy = PTDScrollViewDelegateProxy(delegates: [self])
-        self.scrollView = scrollView
-        self.scrollView?.delegate = self.proxy
+        scrollViewInsideTargetViewController = scrollView
+        scrollViewInsideTargetViewController?.delegate = self.proxy
         self.viewController = viewController
 
         if let navigationBar = navigationBar ?? viewController.navigationController?.navigationBar {
@@ -107,8 +111,8 @@ open class PTDPullToDismiss: NSObject {
         }
 
         proxy = nil
-        scrollView?.delegate = nil
-        scrollView = nil
+        scrollViewInsideTargetViewController?.delegate = nil
+        scrollViewInsideTargetViewController = nil
     }
 
     /// 引っ張る動作の処理
@@ -131,14 +135,19 @@ open class PTDPullToDismiss: NSObject {
 
     /// ドラッグ開始
     fileprivate func startDragging() {
-        if let scrollView = self.scrollView {
-            if scrollView.contentOffset.y <= CGFloat(0) {
-                updatePositionFlag = true
-            } else {
-                updatePositionFlag = false
+        
+        if scrollingInsideScrollViewFlag {
+            if let scrollView = scrollViewInsideTargetViewController {
+                if scrollView.contentOffset.y <= CGFloat(0) {
+                    updatePositionFlag = true
+                } else {
+                    updatePositionFlag = false
+                }
             }
+        } else {
+            updatePositionFlag = true
         }
-
+        
         targetViewController?.view.layer.removeAllAnimations()
         viewPositionY = 0.0
     }
@@ -198,9 +207,13 @@ extension PTDPullToDismiss: UIScrollViewDelegate {
     ///
     /// - Parameter scrollView: scrollView
     public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        if scrollView == scrollViewInsideTargetViewController {
+            scrollingInsideScrollViewFlag = true
+        }
         startDragging()
         dragging = true
         previousContentOffsetY = scrollView.contentOffset.y
+        
     }
     
     /// スクロール中
@@ -242,5 +255,6 @@ extension PTDPullToDismiss: UIScrollViewDelegate {
         finishDragging(withVelocity: velocity)
         dragging = false
         previousContentOffsetY = 0.0
+        scrollingInsideScrollViewFlag = false
     }
 }
