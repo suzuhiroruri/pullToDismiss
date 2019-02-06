@@ -13,10 +13,20 @@ protocol ModalViewControllerProtocol: class {
 }
 
 class ModalViewController: UIViewController {
-    private var pullToDismiss: PTDPullToDismiss?
-    var dimissBlock: (() -> Void)?
+    
+    var dismissBlock: (() -> Void)?
     @IBOutlet var tableView: UITableView!
     @IBOutlet var customNavigationView: PTDCustomNavigationView!
+    
+    private lazy var pullToDismiss: PTDPullToDismiss = {
+        let pullToDismiss = PTDPullToDismiss(scrollView: tableView, viewController: self)
+        pullToDismiss.dismissAction = { [weak self] in
+            self?.dismiss()
+        }
+        pullToDismiss.delegate = self
+        
+        return pullToDismiss
+    }()
 
     weak var delegate: ModalViewControllerProtocol?
 
@@ -27,13 +37,9 @@ class ModalViewController: UIViewController {
         tableView.dataSource = self
 
         customNavigationView.navigationTitle.text = "タイトル"
-        pullToDismiss = PTDPullToDismiss(scrollView: tableView, viewController: self, navigationBar: customNavigationView)
         PTDConfig.shared.dismissableHeightPercentage = 0.3
         PTDConfig.shared.adaptSetting(pullToDismiss: pullToDismiss)
-        pullToDismiss?.dismissAction = { [weak self] in
-            self?.dismiss()
-        }
-        pullToDismiss?.delegate = self
+        
 
         customNavigationView?.delegate = self
     }
@@ -41,10 +47,10 @@ class ModalViewController: UIViewController {
     /// 画面閉じる
     @objc func dismiss() {
         UIView.animate(withDuration: 0.2, animations: { [weak self] in
-            self?.pullToDismiss?.backgroundView?.alpha = 0.0
+            self?.pullToDismiss.backgroundView?.alpha = 0.0
         })
         dismiss(animated: true) { [weak self] in
-            self?.dimissBlock?()
+            self?.dismissBlock?()
         }
         self.delegate?.dismiss()
     }

@@ -10,13 +10,13 @@ import Foundation
 import UIKit
 
 open class PTDPullToDismiss: NSObject {
-
+    
     /// デフォルト設定
     public struct Defaults {
         private init() {}
         public static let dismissableHeightPercentage: CGFloat = 0.33
     }
-
+    
     public var dismissAction: (() -> Void)?
     public weak var delegate: UIScrollViewDelegate? {
         didSet {
@@ -27,69 +27,57 @@ open class PTDPullToDismiss: NSObject {
             proxy = PTDScrollViewDelegateProxy(delegates: delegates)
         }
     }
-
+    
     /// モーダルを閉じる画面の閾値
     public var dismissableHeightPercentage: CGFloat = Defaults.dismissableHeightPercentage {
         didSet {
             dismissableHeightPercentage = min(max(0.0, dismissableHeightPercentage), 1.0)
         }
     }
-
-    fileprivate var viewPositionY: CGFloat = 0.0
-    fileprivate var dragging: Bool = false
-    fileprivate var previousContentOffsetY: CGFloat = 0.0
-    fileprivate weak var viewController: UIViewController?
-
-    /// pullToDismissさせるviewController
-    fileprivate var targetViewController: UIViewController? {
-        return viewController?.navigationController ?? viewController
-    }
     
-    /// pullToDismissさせるviewControllerの中にあるscrollView
-    private var scrollViewInsideTargetViewController: UIScrollView?
-    
-    /// pullToDismissさせるviewControllerの中にあるscrollViewをスクロールした時のフラグ
-    private var scrollingInsideScrollViewFlag:Bool = false
-
-    private var proxy: PTDScrollViewDelegateProxy? {
-        didSet {
-            scrollViewInsideTargetViewController?.delegate = proxy
-        }
-    }
-
-    private var panGesture: UIPanGestureRecognizer?
-    private var navigationBarHeight: CGFloat = 0.0
-
-    /// モーダルviewの位置移動のフラグ
-    private var updatePositionFlag = false
-
-    fileprivate func dismiss() {
-        targetViewController?.dismiss(animated: true, completion: nil)
-    }
     
     /// 背景ビュー
     public var backgroundView:UIView?
-
-
+    
+    /// モーダルviewの位置移動のフラグ
+    private var updatePositionFlag = false
+    
+    /// モーダルビューの位置
+    fileprivate var viewPositionY: CGFloat = 0.0
+    
+    /// 以前のモーダルビューのOffsetの値
+    fileprivate var previousContentOffsetY: CGFloat = 0.0
+    
+    /// pullToDismissさせるviewController
+    fileprivate var targetViewController: UIViewController?
+    
+    /// pullToDismissさせるviewControllerの中にあるscrollView
+    private var insideScrollView: UIScrollView?
+    
+    /// pullToDismissさせるviewControllerの中にあるscrollViewをスクロールした時のフラグ
+    private var scrollingInsideScrollViewFlag:Bool = false
+    
+    /// pullToDismissさせるviewControllerの中にあるscrollViewのスクロール開始時にスクロールがTopかどうかのフラグ
+    private var insideScrollViewBeginDraggingTopFlag:Bool = false
+    
+    /// スクロールのプロキシ
+    private var proxy: PTDScrollViewDelegateProxy? {
+        didSet {
+            insideScrollView?.delegate = proxy
+        }
+    }
+    
     /// 初期化
     ///
     /// - Parameters:
     ///   - scrollView: scrollView
     ///   - viewController: pullToDismissさせるViewController
-    ///   - navigationBar: navigationBar
-    public init(scrollView: UIScrollView, viewController: UIViewController, navigationBar: UIView? = nil) {
+    public init(scrollView: UIScrollView, viewController: UIViewController) {
         super.init()
         self.proxy = PTDScrollViewDelegateProxy(delegates: [self])
-        scrollViewInsideTargetViewController = scrollView
-        scrollViewInsideTargetViewController?.delegate = self.proxy
-        self.viewController = viewController
-
-        if let navigationBar = navigationBar ?? viewController.navigationController?.navigationBar {
-            let gesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
-            navigationBar.addGestureRecognizer(gesture)
-            self.navigationBarHeight = navigationBar.frame.height
-            self.panGesture = gesture
-        }
+        insideScrollView = scrollView
+        insideScrollView?.delegate = self.proxy
+        targetViewController = viewController
         
         let boundSize = UIScreen.main.bounds
         // 背景のビュー設定
@@ -100,21 +88,16 @@ open class PTDPullToDismiss: NSObject {
         }
         backgroundView.backgroundColor = UIColor.black
         backgroundView.alpha = 0.7
-        self.viewController?.view.addSubview(backgroundView)
-        self.viewController?.view.sendSubview(toBack: backgroundView)
-
+        targetViewController?.view.addSubview(backgroundView)
+        targetViewController?.view.sendSubview(toBack: backgroundView)
     }
-
+    
     deinit {
-        if let panGesture = panGesture {
-            panGesture.view?.removeGestureRecognizer(panGesture)
-        }
-
         proxy = nil
-        scrollViewInsideTargetViewController?.delegate = nil
-        scrollViewInsideTargetViewController = nil
+        insideScrollView?.delegate = nil
+        insideScrollView = nil
     }
-
+    
     /// 引っ張る動作の処理
     ///
     /// - Parameter gesture: UIPanGestureRecognizer
@@ -127,17 +110,17 @@ open class PTDPullToDismiss: NSObject {
             updateViewPosition(offset: diff)
             gesture.setTranslation(.zero, in: gesture.view)
         case .ended:
-          finishDragging(withVelocity: .zero)
+            finishDragging(withVelocity: .zero)
         default:
             break
         }
     }
-
+    
     /// ドラッグ開始
     fileprivate func startDragging() {
         
         if scrollingInsideScrollViewFlag {
-            if let scrollView = scrollViewInsideTargetViewController {
+            if let scrollView = insideScrollView {
                 if scrollView.contentOffset.y <= CGFloat(0) {
                     updatePositionFlag = true
                 } else {
@@ -151,7 +134,7 @@ open class PTDPullToDismiss: NSObject {
         targetViewController?.view.layer.removeAllAnimations()
         viewPositionY = 0.0
     }
-
+    
     /// モーダルビューの位置更新
     ///
     /// - Parameter offset: 移動させる分のOffset
@@ -159,7 +142,7 @@ open class PTDPullToDismiss: NSObject {
         if !updatePositionFlag {
             return
         }
-
+        
         var addOffset: CGFloat = offset
         // avoid statusbar gone
         if viewPositionY >= 0 && viewPositionY < 0.05 {
@@ -168,7 +151,7 @@ open class PTDPullToDismiss: NSObject {
         viewPositionY += addOffset
         targetViewController?.view.frame.origin.y = max(0.0, viewPositionY)
     }
-
+    
     /// ドラッグ終了
     ///
     /// - Parameter velocity: ドラッグ終了時の位置
@@ -189,16 +172,10 @@ open class PTDPullToDismiss: NSObject {
         }
         viewPositionY = 0.0
     }
-
-    private static func viewControllerFromScrollView(_ scrollView: UIScrollView) -> UIViewController? {
-        var responder: UIResponder? = scrollView
-        while let r = responder {
-            if let viewController = r as? UIViewController {
-                return viewController
-            }
-            responder = r.next
-        }
-        return nil
+    
+    /// モーダルを閉じる
+    private func dismiss() {
+        targetViewController?.dismiss(animated: true, completion: nil)
     }
 }
 
@@ -207,25 +184,31 @@ extension PTDPullToDismiss: UIScrollViewDelegate {
     ///
     /// - Parameter scrollView: scrollView
     public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        if scrollView == scrollViewInsideTargetViewController {
+        if scrollView == insideScrollView {
             scrollingInsideScrollViewFlag = true
+            if scrollView.contentOffset.y == 0.0 {
+                insideScrollViewBeginDraggingTopFlag = true
+            } else {
+                insideScrollViewBeginDraggingTopFlag = false
+            }
         }
         startDragging()
-        dragging = true
         previousContentOffsetY = scrollView.contentOffset.y
-        
     }
     
     /// スクロール中
     ///
     /// - Parameter scrollView: scrollView
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        // 一旦モーダルビュー自体が動いていない状態で上スクロールした場合、指を離すまではモーダルは動かさないようにする
-        if targetViewController?.view.frame.origin.y == 0.0 && previousContentOffsetY < scrollView.contentOffset.y {
+        // 下記の条件を全て満たす場合、指を離すまではモーダルビューは動かさないようにする
+        // ・スクロール検知時にinsideScrollViewのスクロール位置がtopではなかった
+        // ・モーダルビュー自体のスクロールは発生していない
+        // ・上スクロールを行なった
+        if insideScrollViewBeginDraggingTopFlag == false && targetViewController?.view.frame.origin.y == 0.0 && previousContentOffsetY < scrollView.contentOffset.y {
             updatePositionFlag = false
         }
-
-        if dragging && updatePositionFlag {
+        
+        if updatePositionFlag {
             let diff = -(scrollView.contentOffset.y - previousContentOffsetY)
             if scrollView.contentOffset.y < -scrollView.contentInset.top || (targetViewController?.view.frame.origin.y ?? 0.0) > 0.0 {
                 updateViewPosition(offset: diff)
@@ -244,7 +227,7 @@ extension PTDPullToDismiss: UIScrollViewDelegate {
             backgroundView.alpha = alpha
         }
     }
-
+    
     /// ドラッグの終わりの始まり
     ///
     /// - Parameters:
@@ -253,7 +236,6 @@ extension PTDPullToDismiss: UIScrollViewDelegate {
     ///   - targetContentOffset: スクロールの慣性がストップする想定のoffset
     public func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         finishDragging(withVelocity: velocity)
-        dragging = false
         previousContentOffsetY = 0.0
         scrollingInsideScrollViewFlag = false
     }
