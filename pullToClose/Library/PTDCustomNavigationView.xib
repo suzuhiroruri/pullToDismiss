@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -18,17 +18,17 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oED-Em-eeI" userLabel="CustomNavigationView">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="t4S-XS-SoC">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f3O-sM-3ws">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bar" translatesAutoresizingMaskIntoConstraints="NO" id="b3b-Qx-O4V">
                                             <rect key="frame" x="162.5" y="0.0" width="50" height="30"/>
@@ -41,12 +41,12 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="b3b-Qx-O4V" firstAttribute="centerX" secondItem="f3O-sM-3ws" secondAttribute="centerX" id="bkZ-dt-97I"/>
-                                        <constraint firstAttribute="height" constant="50" id="xts-Ec-C1h"/>
+                                        <constraint firstAttribute="height" constant="30" id="xts-Ec-C1h"/>
                                         <constraint firstItem="b3b-Qx-O4V" firstAttribute="top" secondItem="f3O-sM-3ws" secondAttribute="top" id="ysR-0T-CiA"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="64c-wM-pzc">
-                                    <rect key="frame" x="0.0" y="50" width="375" height="50"/>
+                                    <rect key="frame" x="0.0" y="30" width="375" height="50"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Custom View (as NavigationBar)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HJW-cJ-mmt">
                                             <rect key="frame" x="64.5" y="15" width="246.5" height="20.5"/>
@@ -91,6 +91,8 @@
                 <constraint firstItem="oED-Em-eeI" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" id="FMy-NS-cYT"/>
                 <constraint firstItem="oED-Em-eeI" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="KAb-CR-fzA"/>
             </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>
     <resources>
