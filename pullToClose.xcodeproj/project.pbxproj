@@ -16,7 +16,6 @@
 		2990CC3921F55A1E0037A7B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2990CC3721F55A1E0037A7B1 /* LaunchScreen.storyboard */; };
 		2990CC5121F55C820037A7B1 /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2990CC5021F55C820037A7B1 /* ModalViewController.swift */; };
 		2990CC5321F55CB20037A7B1 /* Modal.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2990CC5221F55CB20037A7B1 /* Modal.storyboard */; };
-		2990CC5521F568B70037A7B1 /* PTDConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2990CC5421F568B70037A7B1 /* PTDConfig.swift */; };
 		2990CCB921F5D7C70037A7B1 /* PTDDelegateProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2990CCB021F5D7C60037A7B1 /* PTDDelegateProxy.m */; };
 		2990CCBA21F5D7C70037A7B1 /* PTDScrollViewDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2990CCB121F5D7C70037A7B1 /* PTDScrollViewDelegateProxy.swift */; };
 		2990CCBB21F5D7C70037A7B1 /* PTDPullToDismiss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2990CCB221F5D7C70037A7B1 /* PTDPullToDismiss.swift */; };
@@ -34,7 +33,6 @@
 		2990CC3A21F55A1E0037A7B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2990CC5021F55C820037A7B1 /* ModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
 		2990CC5221F55CB20037A7B1 /* Modal.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Modal.storyboard; sourceTree = "<group>"; };
-		2990CC5421F568B70037A7B1 /* PTDConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PTDConfig.swift; sourceTree = "<group>"; };
 		2990CCAF21F5D7670037A7B1 /* pullToClose-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "pullToClose-Bridging-Header.h"; sourceTree = "<group>"; };
 		2990CCB021F5D7C60037A7B1 /* PTDDelegateProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTDDelegateProxy.m; sourceTree = "<group>"; };
 		2990CCB121F5D7C70037A7B1 /* PTDScrollViewDelegateProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTDScrollViewDelegateProxy.swift; sourceTree = "<group>"; };
@@ -91,7 +89,6 @@
 			children = (
 				296EC5EB21F834C60070347D /* PTDCustomNavigationView.swift */,
 				296EC5EA21F834C60070347D /* PTDCustomNavigationView.xib */,
-				2990CC5421F568B70037A7B1 /* PTDConfig.swift */,
 				2990CCB321F5D7C70037A7B1 /* PTDDelegateProxy.h */,
 				2990CCB021F5D7C60037A7B1 /* PTDDelegateProxy.m */,
 				2990CCB221F5D7C70037A7B1 /* PTDPullToDismiss.swift */,
@@ -175,7 +172,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2990CC3121F55A1A0037A7B1 /* ViewController.swift in Sources */,
-				2990CC5521F568B70037A7B1 /* PTDConfig.swift in Sources */,
 				2990CC2F21F55A1A0037A7B1 /* AppDelegate.swift in Sources */,
 				2990CC5121F55C820037A7B1 /* ModalViewController.swift in Sources */,
 				2990CCB921F5D7C70037A7B1 /* PTDDelegateProxy.m in Sources */,

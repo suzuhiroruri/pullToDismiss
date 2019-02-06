@@ -11,12 +11,6 @@ import UIKit
 
 open class PTDPullToDismiss: NSObject {
     
-    /// デフォルト設定
-    public struct Defaults {
-        private init() {}
-        public static let dismissableHeightPercentage: CGFloat = 0.33
-    }
-    
     public var dismissAction: (() -> Void)?
     public weak var delegate: UIScrollViewDelegate? {
         didSet {
@@ -29,7 +23,7 @@ open class PTDPullToDismiss: NSObject {
     }
     
     /// モーダルを閉じる画面の閾値
-    public var dismissableHeightPercentage: CGFloat = Defaults.dismissableHeightPercentage {
+    public var dismissableHeightPercentage: CGFloat = 0.0 {
         didSet {
             dismissableHeightPercentage = min(max(0.0, dismissableHeightPercentage), 1.0)
         }
